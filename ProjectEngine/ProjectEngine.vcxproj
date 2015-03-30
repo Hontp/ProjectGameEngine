@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0F3CB14C-94A9-4920-9856-EF1541EA494B}</ProjectGuid>
+    <ProjectGuid>{702F1AE5-06DF-4032-B259-CD023F8C01E5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ProjectEngine</RootNamespace>
   </PropertyGroup>
@@ -41,10 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\dependencies\glew-1.12.0-win32\glew-1.12.0\include\GL;C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\dependencies\SFML-2.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\dependencies\glew-1.12.0-win32\glew-1.12.0\lib\Release\Win32;C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\dependencies\SFML-2.2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\SFML-2.2\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\dependencies\glew-1.12.0-win32\glew-1.12.0\include\GL;C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\dependencies\SFML-2.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\dependencies\glew-1.12.0-win32\glew-1.12.0\lib\Release\Win32;C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\dependencies\SFML-2.2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -54,13 +57,11 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\SFML-2.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\SFML-2.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-main-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;sfml-main-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -73,14 +74,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Tan\Documents\Visual Studio 2013\Projects\ProjectEngine\SFML-2.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>sfml-main.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib;sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;sfml-main.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
