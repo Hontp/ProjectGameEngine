@@ -85,6 +85,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShaderReader.cpp" />
+    <ClCompile Include="SJWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ShaderReader.h" />
+    <ClInclude Include="SJWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,17 +1,17 @@
-#include<SFML/Graphics.hpp>
 #include<glew.h>
-#include<SFML/OpenGL.hpp>
+#include"SJWindow.h"
 
 #include "ShaderReader.h"
-
 #include <iostream>
 
 void main()
 {
-	// create window
-	sf::Window window(sf::VideoMode(800, 600, 32), "OpenGL Window", sf::Style::Default, sf::ContextSettings(32));
-	//window.setVerticalSyncEnabled(true);
+	SJWindow window;
 	
+	// create window
+	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
+		window.SetStyle("Default") , window.SetContextSettings());
+		
 	// initialize opengl
 	glewInit();
 
@@ -60,7 +60,7 @@ void main()
 	while (running)
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
+		while (window.GetEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 			{
@@ -86,7 +86,7 @@ void main()
 
 		glDisableVertexAttribArray(0);
 
-		window.display();
+		window.Display();
 	}
 	
 }
