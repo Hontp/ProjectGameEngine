@@ -2,7 +2,9 @@
 #include<glew.h>
 #include<SFML/OpenGL.hpp>
 
+#include "ShaderReader.h"
 
+#include <iostream>
 
 void main()
 {
@@ -37,6 +39,23 @@ void main()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
 
 	bool running = true;
+
+	///////////////////////////   SHADER READER TEST HERE   /////////////////////////////////
+
+	std::string container;
+
+	//container = ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt");
+	ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt", container);
+
+	//std::cout << "\n\n" << container << "\n\n" << std::endl;			// <--- I (JOSH) AM UNABLE TO BRING UP THE CONSOLE WINDOW DAMNIT!!!
+
+	std::ofstream ofile("OUTPUT.txt");
+
+	ofile << container;
+
+	ofile.close();
+
+	///////////////////////////////////////////////////////////////////////////////////////
 
 	while (running)
 	{
