@@ -44,8 +44,7 @@ void main()
 
 	std::string container;
 
-	//container = ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt");
-	ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt", container);
+	container = ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt");
 
 	//std::cout << "\n\n" << container << "\n\n" << std::endl;			// <--- I (JOSH) AM UNABLE TO BRING UP THE CONSOLE WINDOW DAMNIT!!!
 
