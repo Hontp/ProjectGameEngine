@@ -2,6 +2,7 @@
 #include"SJWindow.h"
 
 #include "ShaderReader.h"
+#include "GameAssetFactory.h"
 #include <iostream>
 
 void main()
@@ -40,21 +41,35 @@ void main()
 
 	bool running = true;
 
+	std::ofstream ofile("OUTPUT.txt");
+
 	///////////////////////////   SHADER READER TEST HERE   /////////////////////////////////
 
 	std::string container;
 
 	container = ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt");
 
-	//std::cout << "\n\n" << container << "\n\n" << std::endl;			// <--- I (JOSH) AM UNABLE TO BRING UP THE CONSOLE WINDOW DAMNIT!!!
-
-	std::ofstream ofile("OUTPUT.txt");
-
 	ofile << container;
 
-	ofile.close();
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	///////////////////////////   ASSET FACTORY TEST HERE   /////////////////////////////////
+
+	Player* p = (Player*)GameAssetFactory::CreateNew(OBJ_ID::CHAR::PLAYER);
+
+	ofile << p->Describe();
+
+	NPC* n = (NPC*)GameAssetFactory::CreateNew(OBJ_ID::CHAR::SML_NPC);
+
+	ofile << n->Describe();
+
+	StaticObject* o = (StaticObject*)GameAssetFactory::CreateNew(OBJ_ID::OBJ::SML_STATIC);
+
+	ofile << o->Describe();
 
 	///////////////////////////////////////////////////////////////////////////////////////
+
+	ofile.close();
 
 	while (running)
 	{
