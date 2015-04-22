@@ -14,7 +14,10 @@ void main()
 		window.SetStyle("Default") , window.SetContextSettings());
 		
 	
+	// check see if opengl has been initalized
 	gl::exts::LoadTest loaded = gl::sys::LoadFunctions();
+	if (!loaded)
+		return;
 
 
 	// create vertex array object
