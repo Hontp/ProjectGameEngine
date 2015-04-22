@@ -1,8 +1,15 @@
-#include<glew.h>
+#include"gl_core_4_3.hpp"
 #include"SJWindow.h"
 
-#include "ShaderReader.h"
-#include <iostream>
+
+
+// instead of using glew an external libary to access OpenGL functions
+// GL Load Generator was used to generate an extension class
+// that is added directly into the project eliminating the need
+// for an external (dlls), furthur more the extension class
+// enforces OpenGL 4.3 standards so deprecated functions can no longer
+// be accessed.
+
 
 void main()
 {
@@ -11,14 +18,16 @@ void main()
 	// create window
 	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
 		window.SetStyle("Default") , window.SetContextSettings());
-		
-	// initialize opengl
-	glewInit();
+	
+	// this is the equivalent to glewInit()
+	gl::exts::LoadTest loaded = gl::sys::LoadFunctions();
+	if (!loaded)
+		return;
 
 	// create vertex array object
 	GLuint vArrayID;
-	glGenVertexArrays(1, &vArrayID);
-	glBindVertexArray(vArrayID);
+	gl::GenVertexArrays(1, &vArrayID);
+	gl::BindVertexArray(vArrayID);
 
 
 	/////---- test triangle
@@ -32,30 +41,13 @@ void main()
 
 	// create vertex buffer object
 	GLuint vBuffer;
-	glGenBuffers(1, &vBuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vBuffer);
+	gl::GenBuffers(1, &vBuffer);
+	gl::BindBuffer(gl::ARRAY_BUFFER, vBuffer);
 
 	// store vertices in buffer object
-	glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
+	gl::BufferData(gl::ARRAY_BUFFER, sizeof(triangle), triangle, gl::STATIC_DRAW);
 
 	bool running = true;
-
-	///////////////////////////   SHADER READER TEST HERE   /////////////////////////////////
-
-	std::string container;
-
-	//container = ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt");
-	ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt", container);
-
-	//std::cout << "\n\n" << container << "\n\n" << std::endl;			// <--- I (JOSH) AM UNABLE TO BRING UP THE CONSOLE WINDOW DAMNIT!!!
-
-	std::ofstream ofile("OUTPUT.txt");
-
-	ofile << container;
-
-	ofile.close();
-
-	///////////////////////////////////////////////////////////////////////////////////////
 
 	while (running)
 	{
@@ -68,23 +60,23 @@ void main()
 			}		
 		}
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		gl::Clear(gl::COLOR_BUFFER_BIT | gl::DEPTH_BUFFER_BIT);
 	
 		// draw
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, vBuffer);
-		glVertexAttribPointer(
+		gl::EnableVertexAttribArray(0);
+		gl::BindBuffer(gl::ARRAY_BUFFER, vBuffer);
+		gl::VertexAttribPointer(
 			0,
 			3,
-			GL_FLOAT,
-			GL_FALSE,
+			gl::FLOAT,
+			gl::FALSE_,
 			0,
 			(void*)0
 			);
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		gl::DrawArrays(gl::TRIANGLES, 0, 3);
 
-		glDisableVertexAttribArray(0);
+		gl::DisableVertexAttribArray(0);
 
 		window.Display();
 	}

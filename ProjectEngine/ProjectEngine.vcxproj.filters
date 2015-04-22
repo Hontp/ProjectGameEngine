@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="GLCore4.3">
+      <UniqueIdentifier>{4eadfd69-0148-4171-975d-987b4aaa63cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,16 +24,16 @@
     <ClCompile Include="SJWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderReader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="gl_core_4_3.cpp">
+      <Filter>GLCore4.3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SJWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderReader.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="gl_core_4_3.hpp">
+      <Filter>GLCore4.3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
