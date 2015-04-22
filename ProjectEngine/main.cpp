@@ -1,15 +1,9 @@
-#include"gl_core_4_3.hpp"
+#include "gl_core_4_3.hpp"
 #include"SJWindow.h"
 
-
-
-// instead of using glew an external libary to access OpenGL functions
-// GL Load Generator was used to generate an extension class
-// that is added directly into the project eliminating the need
-// for an external (dlls), furthur more the extension class
-// enforces OpenGL 4.3 standards so deprecated functions can no longer
-// be accessed.
-
+#include "ShaderReader.h"
+#include "GameAssetFactory.h"
+#include <iostream>
 
 void main()
 {
@@ -18,11 +12,8 @@ void main()
 	// create window
 	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
 		window.SetStyle("Default") , window.SetContextSettings());
+		
 	
-	// this is the equivalent to glewInit()
-	gl::exts::LoadTest loaded = gl::sys::LoadFunctions();
-	if (!loaded)
-		return;
 
 	// create vertex array object
 	GLuint vArrayID;
@@ -48,6 +39,36 @@ void main()
 	gl::BufferData(gl::ARRAY_BUFFER, sizeof(triangle), triangle, gl::STATIC_DRAW);
 
 	bool running = true;
+
+	std::ofstream ofile("OUTPUT.txt");
+
+	///////////////////////////   SHADER READER TEST HERE   /////////////////////////////////
+
+	std::string container;
+
+	container = ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt");
+
+	ofile << container;
+
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	///////////////////////////   ASSET FACTORY TEST HERE   /////////////////////////////////
+
+	Player* p = (Player*)GameAssetFactory::CreateNew(OBJ_ID::CHAR::PLAYER);
+
+	ofile << p->Describe();
+
+	NPC* n = (NPC*)GameAssetFactory::CreateNew(OBJ_ID::CHAR::SML_NPC);
+
+	ofile << n->Describe();
+
+	StaticObject* o = (StaticObject*)GameAssetFactory::CreateNew(OBJ_ID::OBJ::SML_STATIC);
+
+	ofile << o->Describe();
+
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	ofile.close();
 
 	while (running)
 	{
