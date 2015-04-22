@@ -14,6 +14,8 @@ void main()
 		window.SetStyle("Default") , window.SetContextSettings());
 		
 	
+	gl::exts::LoadTest loaded = gl::sys::LoadFunctions();
+
 
 	// create vertex array object
 	GLuint vArrayID;
