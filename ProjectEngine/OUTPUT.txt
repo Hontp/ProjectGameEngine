@@ -2,3 +2,5 @@ THIS IS A PLACEHOLDER FOR A SHADER. IF YOU ARE READING THIS, THEN THE FILEREADER
 This is a player object.
 This is a NPC object.
 This is a static object.
+
+

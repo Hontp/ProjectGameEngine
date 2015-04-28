@@ -1,9 +1,12 @@
-#include "gl_core_4_3.hpp"
+#include "OpenGL.h"
 #include"SJWindow.h"
 
 #include "ShaderReader.h"
 #include "GameAssetFactory.h"
 #include <iostream>
+
+GLuint vArrayID;
+GLuint vBuffer;
 
 void main()
 {
@@ -12,22 +15,16 @@ void main()
 	// create window
 	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
 		window.SetStyle("Default") , window.SetContextSettings());
-		
-	
-	// check see if opengl has been initalized
-	gl::exts::LoadTest loaded = gl::sys::LoadFunctions();
-	if (!loaded)
+
+	// Interfaced OpenGL initialisation checking.
+	if (!OpenGL::Init())
 		return;
 
-
-	// create vertex array object
-	GLuint vArrayID;
-	gl::GenVertexArrays(1, &vArrayID);
-	gl::BindVertexArray(vArrayID);
-
+	// Interfaced VAO generation and binding.
+	OpenGL::VAO_Gen(vArrayID);
 
 	/////---- test triangle
-	static const GLfloat triangle[] =
+	float triangle[] =
 	{
 		-1.0f, -1.0f, 0.0f,
 		1.0f, -1.0f, 0.0f,
@@ -35,13 +32,9 @@ void main()
 	};
 	///----
 
-	// create vertex buffer object
-	GLuint vBuffer;
-	gl::GenBuffers(1, &vBuffer);
-	gl::BindBuffer(gl::ARRAY_BUFFER, vBuffer);
-
-	// store vertices in buffer object
-	gl::BufferData(gl::ARRAY_BUFFER, sizeof(triangle), triangle, gl::STATIC_DRAW);
+	// Interfaced VBO generation and populating.
+	GLuint vBufferID;
+	OpenGL::VBO_Gen(vBufferID, triangle, sizeof(triangle));
 
 	bool running = true;
 
@@ -73,6 +66,13 @@ void main()
 
 	///////////////////////////////////////////////////////////////////////////////////////
 
+	ofile << "\n\n";
+
+	GLenum err;
+	while ((err = gl::GetError()) != gl::NO_ERROR_) {
+		ofile << err;
+	}
+
 	ofile.close();
 
 	while (running)
@@ -86,23 +86,15 @@ void main()
 			}		
 		}
 
-		gl::Clear(gl::COLOR_BUFFER_BIT | gl::DEPTH_BUFFER_BIT);
-	
-		// draw
-		gl::EnableVertexAttribArray(0);
-		gl::BindBuffer(gl::ARRAY_BUFFER, vBuffer);
-		gl::VertexAttribPointer(
-			0,
-			3,
-			gl::FLOAT,
-			gl::FALSE_,
-			0,
-			(void*)0
-			);
+		OpenGL::clearBuffers();
 
-		gl::DrawArrays(gl::TRIANGLES, 0, 3);
+		// Interfaced draw functions.
+		OpenGL::enableVertexAttributes(OpenGL::VERT_ATTRIBUTE::POSITION);
+		OpenGL::BindBuffer(OpenGL::VERT_ATTRIBUTE::POSITION, vBufferID);
 
-		gl::DisableVertexAttribArray(0);
+		OpenGL::DrawAsTriangles(sizeof(triangle));
+
+		OpenGL::disableVertexAttributes(true);
 
 		window.Display();
 	}
