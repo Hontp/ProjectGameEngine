@@ -1,15 +1,21 @@
 #pragma once
 
-#include "GameObject.h"
+#include "DynamicObject.h"
 
-class NPC : public GameObject{
+class NPC : public DynamicObject{
 
 	public:
 
-		NPC(unsigned short ID);
+		NPC();
 		~NPC();
 
 		std::string Describe();
+
+		void Init();
+
+		void Update();
+
+		void Draw();
 
 	private:
 

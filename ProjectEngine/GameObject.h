@@ -3,33 +3,11 @@
 #include <iostream>
 #include <string>
 
-class OBJ_ID{
+static class OBJ_ID{
 
 	public:
 
-		static class CHAR{
-
-			private:
-				static const char mod = 0;
-			public:
-				static enum : unsigned short { PLAYER = 0 + mod, SML_NPC = 1 + mod, MED_NPC = 2 + mod, LRG_NPC = 3 + mod };
-		};
-
-		static class OBJ{
-
-			private:
-				static const char mod = 5;
-			public:
-				static enum : unsigned short { SML_STATIC = 0 + mod, MED_STATIC = 1 + mod, LRG_STATIC = 2 + mod, TERRAIN = 3 + mod };
-		};
-
-		static class MISC{
-
-			private:
-				static const char mod = 10;
-			public:
-				static enum : unsigned short {  };
-		};
+		static enum : unsigned short{DUMMY = 0, PLAYER = 1, NPC = 2, STATIC = 3, TERRAIN = 4};
 
 };
 
@@ -37,17 +15,19 @@ class GameObject{
 
 	public:
 
-		GameObject(unsigned short _ID) { ID_val = _ID; };
-		GameObject() { ID_val = OBJ_ID::CHAR::SML_NPC; }
+		GameObject(){};
 		~GameObject(){};
 
 		virtual std::string Describe(){ return "This is a Game Object.\n"; };
+		
+		virtual void Init(){};
 
-		unsigned short ID() const {	return ID_val;	};
-		void SetID(unsigned short _ID) { ID_val = _ID; }
+		virtual void Update(){};
+
+		virtual void Draw(){};
 
 	protected:
 
-		unsigned short ID_val;
-		// TODO: Add a vector3 equivalent parameter for position, and also possibly rotation.
+		float rotation;
+		// TODO: Add a vector3 equivalent parameter for position.
 };

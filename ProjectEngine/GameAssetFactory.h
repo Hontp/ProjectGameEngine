@@ -9,13 +9,9 @@ class GameAssetFactory{
 
 	public:
 
-		static GameAssetFactory Instance();
-
-		static GameObject* CreateNew(unsigned short ID);			// TODO: Add a vector3 for position as a parameter.
+		static GameObject* CreateNew(unsigned short ID);
 
 	private:
-		GameAssetFactory();
-		~GameAssetFactory();
 
 };
 
