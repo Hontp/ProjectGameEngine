@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\dependencies\SFML-2.2\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\dependencies\SFML-2.2\include;..\dependencies\glm;$(IncludePath)</IncludePath>
     <LibraryPath>..\dependencies\SFML-2.2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -60,7 +60,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;jpeg.lib;sfml-main-d.lib;winmm.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -84,20 +84,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="GameAssetFactory.cpp" />
+    <ClCompile Include="GLM.cpp" />
     <ClCompile Include="gl_core_4_3.cpp" />
+    <ClCompile Include="GraphicsCore.cpp" />
+    <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ShaderReader.cpp" />
     <ClCompile Include="SJWindow.cpp" />
     <ClCompile Include="StaticObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="GameAssetFactory.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GLM.h" />
     <ClInclude Include="gl_core_4_3.hpp" />
+    <ClInclude Include="GraphicsCore.h" />
+    <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="OpenGL.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ShaderReader.h" />
     <ClInclude Include="SJWindow.h" />

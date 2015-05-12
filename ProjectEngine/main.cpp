@@ -52,15 +52,15 @@ void main()
 
 	///////////////////////////   ASSET FACTORY TEST HERE   /////////////////////////////////
 
-	Player* p = (Player*)GameAssetFactory::CreateNew(OBJ_ID::CHAR::PLAYER);
+	Player* p = (Player*)GameAssetFactory::CreateNew(OBJ_ID::PLAYER);
 
 	ofile << p->Describe();
 
-	NPC* n = (NPC*)GameAssetFactory::CreateNew(OBJ_ID::CHAR::SML_NPC);
+	NPC* n = (NPC*)GameAssetFactory::CreateNew(OBJ_ID::NPC);
 
 	ofile << n->Describe();
 
-	StaticObject* o = (StaticObject*)GameAssetFactory::CreateNew(OBJ_ID::OBJ::SML_STATIC);
+	StaticObject* o = (StaticObject*)GameAssetFactory::CreateNew(OBJ_ID::STATIC);
 
 	ofile << o->Describe();
 

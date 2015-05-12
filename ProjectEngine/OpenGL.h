@@ -23,6 +23,11 @@ class OpenGL{
 
 		static void DrawAsTriangles(unsigned int size);
 
+		static void DisplayAs_WireFrame();
+		static void DisplayAs_Fill();
+
+		static GLuint GetUniformLocation(GLuint ShaderProgram, const char* name);
+
 	private:
 
 		static bool vertexAttrib;

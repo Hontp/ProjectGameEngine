@@ -121,3 +121,16 @@ void OpenGL::disableVertexAttributes(bool enableVertex, bool enableColor, bool e
 void OpenGL::DrawAsTriangles(unsigned int size){
 	gl::DrawArrays(gl::TRIANGLES, 0, size / 3);
 }
+
+void OpenGL::DisplayAs_Fill(){
+	gl::PolygonMode(gl::FRONT_AND_BACK, gl::FILL);
+}
+
+void OpenGL::DisplayAs_WireFrame(){
+	gl::PolygonMode(gl::FRONT_AND_BACK, gl::LINE);
+}
+
+GLuint OpenGL::GetUniformLocation(GLuint ShaderProgram, const char* name){
+	GLuint locationValue = OpenGL::GetUniformLocation(ShaderProgram, name);
+	return locationValue;
+}
