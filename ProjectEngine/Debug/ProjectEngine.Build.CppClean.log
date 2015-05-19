@@ -1,18 +1,35 @@
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\vc120.pdb
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\vc120.idb
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\gameassetfactory.obj
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\gl_core_4_3.obj
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\main.obj
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\npc.obj
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\player.obj
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\shaderreader.obj
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\sjwindow.obj
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\staticobject.obj
-c:\users\tan\documents\github\projectgameengine\debug\projectengine.ilk
-c:\users\tan\documents\github\projectgameengine\debug\projectengine.exe
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\cl.command.1.tlog
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\cl.read.1.tlog
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\cl.write.1.tlog
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.command.1.tlog
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.read.1.tlog
-c:\users\tan\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.write.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\vc120.pdb
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\vc120.idb
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\camera.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\cameracontroller.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\dynamicobject.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\gameassetfactory.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\glm.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\gl_core_4_3.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\graphicscore.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\imageloader.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\main.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\npc.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\opengl.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\player.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\shaderreader.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\sjwindow.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\staticobject.obj
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\texture.obj
+u:\users\joshua voysey\documents\github\projectgameengine\debug\projectengine.pdb
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\cl.command.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\cl.read.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\cl.write.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link-cvtres.read.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link-cvtres.write.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link-rc.read.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link-rc.write.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.7560-cvtres.read.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.7560-cvtres.write.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.7560-rc.read.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.7560-rc.write.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.7560.read.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.7560.write.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.command.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.read.1.tlog
+u:\users\joshua voysey\documents\github\projectgameengine\projectengine\debug\projectengine.tlog\link.write.1.tlog

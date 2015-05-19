@@ -31,7 +31,7 @@ class Camera{
         void SetWireFrameMode(bool ping);
 
         // Bind the camera to the currently running shader.
-        void BindToShader(GLuint shaderProgramID) {matrixID = OpenGL::GetUniformLocation(shaderProgramID, "MVP");}
+		void BindToShader(GLuint shaderProgramID) { matrixID = OpenGL::CreateLinkToShader(shaderProgramID, "MVP"); }
 
         // Access certain internal variables.
         GLuint MatrixID() const {   return matrixID;    };

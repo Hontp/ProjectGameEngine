@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-static class OBJ_ID{
+class OBJ_ID{
 
 	public:
 

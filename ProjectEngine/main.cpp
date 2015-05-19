@@ -1,4 +1,4 @@
-#include "OpenGL.h"
+#include "GraphicsCore.h"
 #include"SJWindow.h"
 
 #include "ShaderReader.h"
@@ -17,7 +17,7 @@ void main()
 		window.SetStyle("Default") , window.SetContextSettings());
 
 	// Interfaced OpenGL initialisation checking.
-	if (!OpenGL::Init())
+	if (!GraphicsCore::Init(GraphicsCore::API::OPENGL))
 		return;
 
 	// Interfaced VAO generation and binding.
@@ -34,7 +34,9 @@ void main()
 
 	// Interfaced VBO generation and populating.
 	GLuint vBufferID;
-	OpenGL::VBO_Gen(vBufferID, triangle, sizeof(triangle));
+	OpenGL::VBO_Gen(vBufferID, sizeof(triangle), triangle);
+	//OpenGL::VBO_Bind(vBufferID);
+	//OpenGL::VBO_Fill(vBufferID, triangle, sizeof(triangle), 0);
 
 	bool running = true;
 
