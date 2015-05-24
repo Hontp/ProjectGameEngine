@@ -47,6 +47,18 @@ class GraphicsCore{
 		*/
 		static GLuint Create_GLTexture();
 
+		/**	@brief: Create an OpenGL multiTexture.
+
+			@param: NONE.
+
+			Description: Create an OpenGL multiTexture object.
+
+			@return: A set of handles to access each of the OpenGL multiTexture object's layers.
+
+			@pre: '_layers' should be less than or equal to the number of supported texture layers for the given API. This function DOES NOT CHECK.
+		*/
+		static GLuint* Create_GLMultiTexture(unsigned short _layers);
+
 		/**	@brief: Delete an OpenGL texture.
 
 			@param: handle (GLuint) - The OpenGL handle for accessing the texture object.
@@ -125,6 +137,26 @@ class GraphicsCore{
 		*/
 		static void Texture_GenMipMaps(GLuint textureHandle, GLuint mipMapBehaviour);
 
+		/**	@brief: For drawing multitextures. Activate the next layer in a multitexture material.
+			
+			@param: layer (unsigned short) - The next layer to draw onto a model.
+
+			Description: Activate the next layer in a multitexture material.
+
+			@return: NONE.
+		*/
+		static void MultiTexture_SetActiveLayer(unsigned short layer);
+
+		/**	@brief: Check that the layers that are to be created are less that or equal to the maximum available texture layers.
+
+			@param: layerCount (unsigned short) - The number of layers in the MultiTexture.
+
+			Description: Check that the desired number of layers in the multiTexture is valid.
+
+			@return: value of 'layerCount' if it is valid, else the MAX number of texture layers.
+		*/
+		static unsigned short MultiTexture_ValidateLayerCount(unsigned short layerCount);
+
 		/**	@brief: Clear the current frame buffer in preparation for drawing the NEXT frame buffer.
 		
 			@param: NONE.
@@ -147,6 +179,7 @@ class GraphicsCore{
 	private:
 
 		static ImageLoader* imgLoader;		// Used for data loading from image files.
+		static GLenum GL_tex_layers[];		// Container for holding OpenGL texture layer enumerations.
 
 };
 

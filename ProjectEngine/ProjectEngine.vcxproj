@@ -93,6 +93,8 @@
     <ClCompile Include="GraphicsCore.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -111,6 +113,8 @@
     <ClInclude Include="gl_core_4_3.hpp" />
     <ClInclude Include="GraphicsCore.h" />
     <ClInclude Include="ImageLoader.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="OpenGL.h" />
     <ClInclude Include="Player.h" />

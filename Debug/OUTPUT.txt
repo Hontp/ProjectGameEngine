@@ -1,0 +1,5 @@
+This is a player object.
+This is a NPC object.
+This is a static object.
+
+

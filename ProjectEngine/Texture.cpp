@@ -20,21 +20,3 @@ void Texture::Init(const std::string& filename, bool mipMaps, GLuint mipMapBehav
 		GraphicsCore::Texture_GenMipMaps(GL_handle, mipMapBehaviour);
 	}
 }
-
-void Texture::Activate(){
-
-	GraphicsCore::Texture_FocusOn(GL_handle);
-	
-}
-
-void Texture::SetFiltering(GLuint filteringType){
-
-	GraphicsCore::Texture_SetFiltering(GL_handle, filteringType);
-
-}
-
-void Texture::SetWrapping(GLuint wrappingType){
-
-	GraphicsCore::Texture_SetWrapping(GL_handle, wrappingType);
-
-}

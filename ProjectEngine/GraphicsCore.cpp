@@ -2,6 +2,7 @@
 
 static unsigned short _API = NULL;
 ImageLoader* GraphicsCore::imgLoader = new ImageLoader();
+GLenum GraphicsCore::GL_tex_layers[] = { OpenGL::TEX_LAYERS::LAYER1, OpenGL::TEX_LAYERS::LAYER2, OpenGL::TEX_LAYERS::LAYER3 };
 
 bool GraphicsCore::Init(unsigned short API_ID){
 
@@ -28,6 +29,16 @@ GLuint GraphicsCore::Create_GLTexture(){
 	GLuint GL_handle;
 	OpenGL::Tex_Gen(GL_handle);
 	return GL_handle;
+}
+
+GLuint* GraphicsCore::Create_GLMultiTexture(unsigned short _layers){
+
+	GLuint* GL_handles = new GLuint[_layers];
+
+	for (unsigned short i = 0; i < _layers; i++)
+		OpenGL::Tex_Gen(GL_handles[i]);
+
+	return GL_handles;
 }
 
 void GraphicsCore::Delete_GLTexture(GLuint handle){
@@ -135,6 +146,42 @@ void GraphicsCore::Texture_FocusOn(GLuint textureHandle){
 void GraphicsCore::Texture_GenMipMaps(GLuint textureHandle, GLuint mipMapBehaviour){
 	OpenGL::Tex_GenMipMaps(textureHandle);
 	OpenGL::Tex_SetMipMapBehaviour(textureHandle, mipMapBehaviour);
+}
+
+void GraphicsCore::MultiTexture_SetActiveLayer(unsigned short layer){
+
+	switch (GraphicsCore::GetActiveAPI()){
+
+		case GraphicsCore::API::OPENGL:
+
+			if (layer < OpenGL::MAX_TEX_LAYER)
+				OpenGL::Tex_SetAsActive(GL_tex_layers[layer]);
+			break;
+
+		default: 
+
+			break;
+	}
+
+}
+
+unsigned short GraphicsCore::MultiTexture_ValidateLayerCount(unsigned short layerCount){
+
+	switch (GraphicsCore::GetActiveAPI()){
+
+	case GraphicsCore::API::OPENGL:
+
+		if (layerCount > OpenGL::MAX_TEX_LAYER)
+			layerCount = OpenGL::MAX_TEX_LAYER;
+
+		return layerCount;
+
+	default:
+
+		return 0;
+
+	}
+
 }
 
 void GraphicsCore::ClearBuffers(){

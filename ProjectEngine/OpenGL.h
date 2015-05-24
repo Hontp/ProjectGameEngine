@@ -15,7 +15,7 @@ class OpenGL{
 
 	public:
 
-		/**	@class: OpenGL.
+		/**	@class: VERt_ATTRIBUTE.
 
 			@Author: Joshua Voysey
 			@Date: 5th May 2015
@@ -27,6 +27,21 @@ class OpenGL{
 			public:
 				static enum { NULL_ = -1, POSITION = 0, COLOR = 1, UV = 2 };
 		};
+
+		/**	@class: VERt_ATTRIBUTE.
+
+			@Author: Joshua Voysey
+			@Date: 24th May 2015
+			@Version: 1.2
+
+			Description: Storage class for OpenGL texture layer enumerations.
+		*/
+		class TEX_LAYERS{
+			public:
+				static enum { LAYER1 = gl::TEXTURE0, LAYER2 = gl::TEXTURE1, LAYER3 = gl::TEXTURE2};
+		};
+
+		static const unsigned short MAX_TEX_LAYER = 3;		// Current maximum layers for OpenGL multitextures.
 
 		/**	@brief: Initialisation function.
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GraphicsCore.h"
+#include "Material.h"
 
 /**	@class: Texture.
 
@@ -10,7 +10,7 @@
 
 	Description: This class holds the image data for a model, as well as all filtering, wrapping, and mipmap functionality.
 */
-class Texture{
+class Texture : public Material{
 
 	public:
 
@@ -46,38 +46,8 @@ class Texture{
 		*/
 		void Init(const std::string& filename, bool mipMaps, GLuint mipMapBehaviour = 0);
 
-		/**	@brief: Activate the current texture.
-
-			@param: NONE.
-
-			Description: Activate the current texture as the active texture. Used when drawing to specify the correct texture to draw on the model.
-
-			@return: NONE.
-		*/
-		void Activate();
-
-		/**	@brief: Set the filtering behaviour for the texture.
-
-			@param: filteringType (GLuint) - Enumeration value specifying the desired filtering behaviour.
-
-			Description: Set the magnification / minification filtering behaviour to the desired type.
-
-			@return: NONE.
-		*/
-		void SetFiltering(GLuint filteringType);
-
-		/**	@brief: Set the wrapping behaviour for the texture.
-
-			@param: wrappingType (GLuint) - Enumeration value specifying the desired wrapping behaviour.
-
-			Description: Set the model wrapping behaviour of the texture for UV co-ordinates outside of ( 0.0 <-> 1.0 ).
-
-			@return: NONE.
-		*/
-		void SetWrapping(GLuint wrappingType);
-
 	private:
 
-		GLuint GL_handle;	// A handle used for OpenGL function processing.
+		
 };
 

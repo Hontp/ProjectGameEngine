@@ -1,30 +1,9 @@
-﻿Build started 5/19/2015 10:27:21 PM.
+﻿Build started 5/24/2015 9:32:00 PM.
      1>Project "U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\ProjectEngine\ProjectEngine.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         P:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D SFML_STATIC /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GraphicsCore.cpp Texture.cpp main.cpp
-         Texture.cpp
-         Generating Code...
-     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
-       Link:
-         P:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.exe" /INCREMENTAL /NOLOGO opengl32.lib jpeg.lib "sfml-main-d.lib" winmm.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.lib" /MACHINE:X86 Debug\Camera.obj
-         Debug\CameraController.obj
-         Debug\DynamicObject.obj
-         Debug\GameAssetFactory.obj
-         Debug\GLM.obj
-         Debug\gl_core_4_3.obj
-         Debug\GraphicsCore.obj
-         Debug\ImageLoader.obj
-         Debug\main.obj
-         Debug\NPC.obj
-         Debug\OpenGL.obj
-         Debug\Player.obj
-         Debug\ShaderReader.obj
-         Debug\SJWindow.obj
-         Debug\StaticObject.obj
-         Debug\Texture.obj
+     1>Link:
          ProjectEngine.vcxproj -> U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.exe
      1>Done Building Project "U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\ProjectEngine\ProjectEngine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.48
+Time Elapsed 00:00:00.06
