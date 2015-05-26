@@ -87,6 +87,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
+    <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="GameAssetFactory.cpp" />
     <ClCompile Include="GLM.cpp" />
     <ClCompile Include="gl_core_4_3.cpp" />
@@ -101,12 +102,14 @@
     <ClCompile Include="ShaderReader.cpp" />
     <ClCompile Include="SJWindow.cpp" />
     <ClCompile Include="StaticObject.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="DynamicObject.h" />
+    <ClInclude Include="FileReader.h" />
     <ClInclude Include="GameAssetFactory.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLM.h" />
@@ -121,6 +124,7 @@
     <ClInclude Include="ShaderReader.h" />
     <ClInclude Include="SJWindow.h" />
     <ClInclude Include="StaticObject.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
