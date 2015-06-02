@@ -24,7 +24,7 @@ public:
 
 	/** structure to hold the input device
 	* an event type
-	* the assoicated keys, buttons
+	* the associated keys, buttons
 	*/
 	struct Action
 	{
@@ -34,12 +34,25 @@ public:
 		MButtons mouseButton;
 	};
 
-	
+	/**
+	* A Map that stores a string name to an action
+	* object
+	*/	
 	std::map<std::string, InputHandler::Action> KeyBindings;
 
-	/** bind an action to an action name
+	/** 
+	* bind an action object to an action name
+	* @param action
+	* @param keys
 	*/
 	void BindAction(std::string action , Action keys);
+
+	/**
+	* Get the key associated to the action
+	* @param actionName as string
+	*/
+	Keys GetKey(std::string actionName);
+
 
 };
 

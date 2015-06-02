@@ -10,7 +10,7 @@ public:
 
 	void InitKeys();
 
-	bool isKeyPressed(std::string key);
+	bool isKeyPressed(std::string action);
 
 private:
 	InputHandler handler;

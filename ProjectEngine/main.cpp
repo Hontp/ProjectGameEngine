@@ -17,10 +17,14 @@ void main()
 
 	SJWindow window;
 
+	InputManager manager = InputManager();
+
 	//Game *game = new Game();
 
 	//game->Initialize();
 	
+	manager.InitKeys();
+
 	// create window
 	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
 		window.SetStyle("Default") , window.SetContextSettings());
@@ -88,13 +92,36 @@ void main()
 
 	while (running)
 	{
-		sf::Event event;
+		Events event;
 		while (window.GetEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			switch (event.type)
 			{
+
+			case Events::Closed:
 				running = false;
-			}
+				break;
+
+			case Events::KeyPressed:				
+				if (manager.isKeyPressed("W") == true)
+					std::cout << "W is Pressed" << "\n";
+
+				if (manager.isKeyPressed("A") == true)
+					std::cout << "A is Pressed" << "\n";
+
+				if (manager.isKeyPressed("S") == true)
+					std::cout << "S is Pressed" << "\n";
+
+				if (manager.isKeyPressed("D") == true)
+					std::cout << "D is Pressed" << "\n";
+
+				if (manager.isKeyPressed("X") == true)
+					exit(0);
+				break;
+
+			default:
+				break;
+			};
 		}
 
 		OpenGL::clearBuffers();
