@@ -90,6 +90,16 @@ void main()
 
 	ofile.close();
 
+	///////////////////////////   HUD DRAWING TEST HERE   /////////////////////////////////
+
+	sf::Font font;
+	if (!font.loadFromFile("Fonts/arial.ttf")){
+		std::cout << "Error: could not find file: '" << "Fonts/arial.ttf" << "'." << std::endl;
+	}
+	sf::Text text("GameName", font, 50);
+
+	///////////////////////////////////////////////////////////////////////////////////////
+
 	while (running)
 	{
 		Events event;
@@ -124,7 +134,10 @@ void main()
 			};
 		}
 
+		window.Clear(sf::Color::Black);
 		OpenGL::clearBuffers();
+
+		//window.Draw(text);		<---------------  Uncommenting this will make the program stop rendering the triangle onscreen.
 
 		// Interfaced draw functions.
 		OpenGL::enableVertexAttributes(OpenGL::VERT_ATTRIBUTE::POSITION);

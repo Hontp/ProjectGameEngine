@@ -24,7 +24,7 @@ class SJWindow
 private:
 
 	// underlying SFML window object
-	sf::Window window;
+	sf::RenderWindow window;
 
 	// SFML contextSettings object
 	sf::ContextSettings setting;
@@ -77,6 +77,18 @@ public:
 	*
 	*/
 	void Display();
+
+	/**
+	* Draw an element on the window.
+	*
+	*/
+	void Draw(sf::Drawable &element);
+
+	/**
+	* Clear rendered elements.
+	*
+	*/
+	void Clear(sf::Color color = sf::Color::Blue);
 
 	/**
 	 * Set Window Border Style

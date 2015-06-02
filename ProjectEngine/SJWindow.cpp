@@ -27,6 +27,18 @@ void SJWindow::Display()
 	window.display();
 }
 
+void SJWindow::Draw(sf::Drawable &element)
+{
+	//window.pushGLStates();	//<----------- Uncommenting this causes an access violation error.
+	window.draw(element);
+	//window.popGLStates();		//<----------- Uncommenting this causes an access violation error.
+}
+
+void SJWindow::Clear(sf::Color color)
+{
+	window.clear(color);
+}
+
 sf::ContextSettings SJWindow::SetContextSettings(unsigned int depth, unsigned int stencil,
 	unsigned int antialiasing, unsigned int major, unsigned int minor)
 {

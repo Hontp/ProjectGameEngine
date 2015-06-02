@@ -1,5 +1,51 @@
-﻿Build started 6/2/2015 9:37:51 PM.
+﻿Build started 6/3/2015 12:15:29 AM.
+     1>Project "U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\ProjectEngine\ProjectEngine.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         P:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D SFML_STATIC /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+       Link:
+         P:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.exe" /INCREMENTAL /NOLOGO opengl32.lib jpeg.lib "sfml-main-d.lib" winmm.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" freetype.lib glew.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.lib" /MACHINE:X86 Debug\Camera.obj
+         Debug\CameraController.obj
+         Debug\DynamicObject.obj
+         Debug\Engine.obj
+         Debug\FileReader.obj
+         Debug\Game.obj
+         Debug\GameAssetFactory.obj
+         Debug\GLM.obj
+         Debug\gl_core_4_3.obj
+         Debug\GraphicsCore.obj
+         Debug\HUD.obj
+         Debug\HUD_Element.obj
+         Debug\IAsset.obj
+         Debug\ImageLoader.obj
+         Debug\InputHandler.obj
+         Debug\InputManager.obj
+         Debug\IRenderer.obj
+         Debug\main.obj
+         Debug\Material.obj
+         Debug\MeshLoader.obj
+         Debug\MultiTexture.obj
+         Debug\NPC.obj
+         Debug\OpenGL.obj
+         Debug\OpenGLRenderer.obj
+         Debug\Player.obj
+         Debug\RendererFactory.obj
+         Debug\ResourceManager.obj
+         Debug\SceneManager.obj
+         Debug\Shader.obj
+         Debug\ShaderProgram.obj
+         Debug\ShaderReader.obj
+         Debug\Singleton.obj
+         Debug\SJWindow.obj
+         Debug\StaticObject.obj
+         Debug\Terrain.obj
+         Debug\Text.obj
+         Debug\Texture.obj
+         Debug\Timing.obj
+         Debug\Window.obj
+         ProjectEngine.vcxproj -> U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.exe
+     1>Done Building Project "U:\Users\Joshua Voysey\Documents\GitHub\ProjectGameEngine\ProjectEngine\ProjectEngine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.01
+Time Elapsed 00:00:01.61
