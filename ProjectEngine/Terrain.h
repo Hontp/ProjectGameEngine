@@ -9,6 +9,7 @@
 // 3D graphics libraries.
 #include "GLM.h"
 #include "OpenGL.h"
+#include "GameObject.h"
 
 // Local headers.
 #include "FileReader.h"
@@ -17,8 +18,8 @@
 
     Description:    
 */
-class Terrain{
-
+class Terrain : public GameObject
+{
     public:
         Terrain(int _dimensions){dimensions = _dimensions;  };            // Constructor.
         ~Terrain(){Destroy();}; // Destructor.

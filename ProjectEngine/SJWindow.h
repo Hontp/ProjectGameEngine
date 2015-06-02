@@ -112,6 +112,8 @@ public:
 	 */
 	sf::VideoMode SetVideoMode(unsigned Width, unsigned Height, unsigned BitPerPixel = 32);
 
+	float getElaspedTime();
+
 	
 
 };

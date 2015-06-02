@@ -15,7 +15,7 @@ class OpenGL{
 
 	public:
 
-		/**	@class: VERt_ATTRIBUTE.
+		/**	@class: VERT_ATTRIBUTE.
 
 			@Author: Joshua Voysey
 			@Date: 5th May 2015
@@ -28,7 +28,7 @@ class OpenGL{
 				static enum { NULL_ = -1, POSITION = 0, COLOR = 1, UV = 2 };
 		};
 
-		/**	@class: VERt_ATTRIBUTE.
+		/**	@class: VERT_ATTRIBUTE.
 
 			@Author: Joshua Voysey
 			@Date: 24th May 2015
@@ -111,7 +111,7 @@ class OpenGL{
 
 			@param: enable (unsigned int) - An enumeration value from the VERT_ATTRIBUTE class corresponding to a vertex attribute.
 
-			Desciption: Enable a vertex attribute when drawing the VBO onscreen.
+			Desciption: Enable a vertex attribute when drawing the VBO on screen.
 
 			@return: NONE.
 		*/
@@ -122,7 +122,7 @@ class OpenGL{
 			@param: vertexAttribute (unsigned int) - An enumeration value from the VERT_ATTRIBUTE class corresponding to a vertex attribute.
 			@param: VBO_handle (GLuint) - A handle for a VBO.
 
-			Desciption: When drawing the VBO, the data array must be bound to the corrseponding attribute via this function.
+			Desciption: When drawing the VBO, the data array must be bound to the correseponding attribute via this function.
 
 			@return: NONE.
 		*/
@@ -144,7 +144,7 @@ class OpenGL{
 
 			@param: size (unsigned int) - Size of the VBO's buffer.
 
-			Desciption: Draw the VBO onscreen.
+			Desciption: Draw the VBO on screen.
 
 			@return: NONE.
 		*/

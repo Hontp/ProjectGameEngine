@@ -8,7 +8,7 @@
 
 /** @class: Camera.
 
-    Description:    The Camera class is a basic projection class that alters the 2D co-ordinates of onscreen vertices to simulate a first-person perspective.
+    Description:    The Camera class is a basic projection class that alters the 2D co-ordinates of onnscreen vertices to simulate a first-person perspective.
                     This class is a static object. See CameraController child class for Camera with implemented movement and orientation controls.
 */
 class Camera{
@@ -17,11 +17,11 @@ class Camera{
         Camera(void) {ModelMatrix = glm::mat4(1.0f);};      // Constructor.
         ~Camera(void) {};                                   // Destructor.
 
-		/** @brief: Initilise a Camera object.
+		/** @brief: Initialise a Camera object.
 
 			@param: _pos (glm::vec3) - Position of the camera's origin.
 			@param: _lookAt (glm::vec3) - Position of the target that the camera is pointing at.
-			@param: _fov (GLfloat) - Perifieral vision camera can see around the lookAt direction.
+			@param: _fov (GLfloat) - Peripheral vision camera can see around the lookAt direction.
 			@param: _nearPlane (GLfloat) - minimum distance from camera's position before clipping occurs.
 			@param: _farPlane (GLfloat) - maximum distance from camera's position before clipping occurs.
 
@@ -83,7 +83,7 @@ class Camera{
 
 		/** @brief: Set the display mode for the camera.
 
-			Description: Change the display settings for any geometry that has been drawn onscreen.
+			Description: Change the display settings for any geometry that has been drawn on screen.
 
 			@param: ping (boolean) - Flag that dictates the render mode of the camera.
 

@@ -1,5 +1,8 @@
 #include "GraphicsCore.h"
 #include"SJWindow.h"
+#include "Terrain.h"
+#include "Game.h"
+#include "InputManager.h"
 
 #include "ShaderReader.h"
 #include "GameAssetFactory.h"
@@ -10,7 +13,13 @@ GLuint vBuffer;
 
 void main()
 {
+	//std::cout << "HELLO!!!!";
+
 	SJWindow window;
+
+	//Game *game = new Game();
+
+	//game->Initialize();
 	
 	// create window
 	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
@@ -85,7 +94,7 @@ void main()
 			if (event.type == sf::Event::Closed)
 			{
 				running = false;
-			}		
+			}
 		}
 
 		OpenGL::clearBuffers();

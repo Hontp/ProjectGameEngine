@@ -48,6 +48,12 @@ sf::VideoMode SJWindow::SetVideoMode(unsigned Width, unsigned Height, unsigned B
 	return videoMode;
 }
 
+float SJWindow::getElaspedTime()
+{
+	return 1.0f;
+}
+
+
 UINT32 SJWindow::SetStyle(std::string StyleName)
 {
 	UINT32 style;
@@ -81,3 +87,4 @@ UINT32 SJWindow::SetStyle(std::string StyleName)
 
 	return style;
 }
+

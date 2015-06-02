@@ -1,7 +1,8 @@
 #include "Camera.h"
 
 
-void Camera::Init(glm::vec3 _pos, glm::vec3 _lookAt, GLfloat _fov, GLfloat _nearPlane, GLfloat _farPlane){
+void Camera::Init(glm::vec3 _pos, glm::vec3 _lookAt, GLfloat _fov, GLfloat _nearPlane, GLfloat _farPlane)
+{
 
     Position = _pos;
     LookAt = _lookAt;
@@ -16,7 +17,8 @@ void Camera::Init(glm::vec3 _pos, glm::vec3 _lookAt, GLfloat _fov, GLfloat _near
 
 }
 
-void Camera::MoveTo(glm::vec3 _newPos){
+void Camera::MoveTo(glm::vec3 _newPos)
+{
 
     Position = _newPos;     // Update the camera's position.
 
@@ -25,7 +27,8 @@ void Camera::MoveTo(glm::vec3 _newPos){
     RecalcMVPMatrix();      // Recalculate Model-View-Projection Matrix.
 }
 
-void Camera::SetLookAt(glm::vec3 _newTarget){
+void Camera::SetLookAt(glm::vec3 _newTarget)
+{
 
     LookAt = _newTarget;    // Update the camera's LookAt target.
 
@@ -34,7 +37,8 @@ void Camera::SetLookAt(glm::vec3 _newTarget){
     RecalcMVPMatrix();      // Recalculate Model-View-Projection Matrix.
 }
 
-void Camera::SetNearPlane(GLfloat _newNear){
+void Camera::SetNearPlane(GLfloat _newNear)
+{
 
     nearPlane = _newNear;   // Update the camera's near plane.
 
@@ -43,7 +47,8 @@ void Camera::SetNearPlane(GLfloat _newNear){
     RecalcMVPMatrix();      // Recalculate Model-View-Projection Matrix.
 }
 
-void Camera::SetFarPlane(GLfloat _newFar){
+void Camera::SetFarPlane(GLfloat _newFar)
+{
 
     farPlane = _newFar;     // Update the camera's far plane.
 
@@ -56,15 +61,18 @@ void Camera::RecalcProjMatrix(){
     ProjMatrix = GLM::CreatePerspectiveMatrix(FoV, 4.0f / 3.0f, nearPlane, farPlane);
 }
 
-void Camera::RecalcViewMatrix(){
+void Camera::RecalcViewMatrix()
+{
     ViewMatrix = GLM::CreateLookAtMatrix(Position, LookAt, Up);
 }
 
-void Camera::RecalcMVPMatrix(){
+void Camera::RecalcMVPMatrix()
+{
     MVP = ProjMatrix * ViewMatrix * ModelMatrix;
 }
 
-void Camera::SetWireFrameMode(bool ping){
+void Camera::SetWireFrameMode(bool ping)
+{
 
     if(ping){
 		OpenGL::DisplayAs_WireFrame();
@@ -75,18 +83,22 @@ void Camera::SetWireFrameMode(bool ping){
 
 }
 
-glm::vec3 Camera::GetPosition(){
+glm::vec3 Camera::GetPosition()
+{
     return Position;
 }
 
-glm::vec3 Camera::GetUpVector(){
+glm::vec3 Camera::GetUpVector()
+{
     return Up;
 }
 
-void Camera::SetViewMatrix(glm::mat4 newView){
+void Camera::SetViewMatrix(glm::mat4 newView)
+{
     ViewMatrix = newView;
 }
 
-void Camera::SetPosition(glm::vec3 newPosition){
+void Camera::SetPosition(glm::vec3 newPosition)
+{
     Position = newPosition;
 }
