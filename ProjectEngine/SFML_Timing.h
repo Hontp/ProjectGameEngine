@@ -9,7 +9,7 @@ public:
 	SFML_Timing();
 	~SFML_Timing();
 
-	float getElapsedTime();
+	float getElapsedTotalTime();
 private:
 	sf::Clock clock;
 	sf::Time time;

@@ -95,6 +95,8 @@ public:
 	*/
 	void End();
 
+	sf::RenderWindow* Base();
+
 	/**
 	* Clear rendered elements.
 	*

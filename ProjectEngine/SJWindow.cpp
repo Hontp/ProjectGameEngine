@@ -42,6 +42,11 @@ void SJWindow::End()
 	window.popGLStates();
 }
 
+sf::RenderWindow* SJWindow::Base()
+{
+	return &window;
+}
+
 void SJWindow::Clear(sf::Color color)
 {
 	window.clear(color);

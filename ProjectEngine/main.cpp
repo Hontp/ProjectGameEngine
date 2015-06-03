@@ -1,6 +1,6 @@
 #include "GraphicsCore.h"
 #include "SJWindow.h"
-#include "Terrain.h"
+#include "TerrainFactory.h"
 #include "Game.h"
 #include "InputManager.h"
 
@@ -8,7 +8,8 @@
 #include "ShaderProgram.h"
 #include "ShaderReader.h"
 #include "GameAssetFactory.h"
-#include "Camera.h"
+#include "CameraController.h"
+#include "Timing.h"
 #include <iostream>
 
 GLuint vArrayID;
@@ -24,14 +25,17 @@ void main()
 	if (!GraphicsCore::Init(GraphicsCore::API::OPENGL))
 		return;
 
-	Shader vertexTest;
-	Shader fragmentTest;
+	GLenum ENUM = gl::VERTEX_SHADER;
+	Shader vertexTest(ENUM);
+	ENUM = gl::FRAGMENT_SHADER;
+	Shader fragmentTest(ENUM);
+
+	JVShader joshTest;
 
 	ShaderProgram testShader;
 
-	Camera camera;
-
 	InputManager manager = InputManager();
+	Timing clock;
 
 	//Game *game = new Game();
 
@@ -58,41 +62,29 @@ void main()
 	// Interfaced VBO generation and populating.
 	GLuint vBufferID;
 	OpenGL::VBO_Gen(vBufferID, sizeof(triangle), triangle);
-	//OpenGL::VBO_Bind(vBufferID);
-	//OpenGL::VBO_Fill(vBufferID, triangle, sizeof(triangle), 0);
 
 	bool running = true;
 
-	std::ofstream ofile("OUTPUT.txt");
-
 	///////////////////////////   SHADER READER TEST HERE   /////////////////////////////////
 
-	std::string container;
-
-	container = ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt");
-
-	ofile << container;
-
-	vertexTest.loadfromFile("Shaders/vertex.shader");
-	vertexTest.compile();
-
-	fragmentTest.loadfromFile("Shaders/fragment.shader");
-	fragmentTest.compile();
-
-	testShader.attachShader(vertexTest);
-	testShader.attachShader(fragmentTest);
-
-	testShader.linkProgram();
+	joshTest.LoadFiles("Shaders/vertex.shader", "Shaders/fragment.shader");
 
 	///////////////////////////////////////////////////////////////////////////////////////
 
 	///////////////////////////   CAMERA TEST HERE   /////////////////////////////////
 
-	//camera.Init(glm::vec3(0, 3, 1), glm::vec3(0, 0, 0), 45.0f, 0.1f, 1500.0f);
+	Camera* camera = new Camera();
+	camera->Init(glm::vec3(0, 3, 1), glm::vec3(0, 0, 0), 45.0f, 0.1f, 1500.0f);
+
+	CameraController controller(&window, &manager, camera, 1.0f, &clock);
+
+	camera->BindToShader(joshTest, "MVP");
 
 	///////////////////////////////////////////////////////////////////////////////////////
 
 	///////////////////////////   ASSET FACTORY TEST HERE   /////////////////////////////////
+
+	std::ofstream ofile("OUTPUT.txt");
 
 	Player* p = (Player*)GameAssetFactory::CreateNew(OBJ_ID::PLAYER);
 
@@ -127,8 +119,24 @@ void main()
 
 	///////////////////////////////////////////////////////////////////////////////////////
 
+	///////////////////////////   TERRAIN GENERATION TEST HERE   //////////////////////////
+
+	TerrainFactory tFactory;
+	Terrain* terrain;
+
+	tFactory.SetScaleFactor(1.0f, 1.0f, 1.0f);
+	tFactory.Init("HeightMap.raw", 128, "");
+
+	terrain = tFactory.BuildAt(glm::vec3(3, 0, 3));
+
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	gl::Enable(gl::DEPTH_TEST);
+	gl::DepthFunc(gl::LESS);
+
 	while (running)
 	{
+
 		Events event;
 		while (window.GetEvent(event))
 		{
@@ -140,20 +148,23 @@ void main()
 				break;
 
 			case Events::KeyPressed:				
-				if (manager.isKeyPressed("W") == true)
-					std::cout << "W is Pressed" << "\n";
+				if (manager.isKeyPressed("W") == true){}
+					//std::cout << "W is Pressed" << "\n";
 
-				if (manager.isKeyPressed("A") == true)
-					std::cout << "A is Pressed" << "\n";
+				if (manager.isKeyPressed("A") == true){}
+				//std::cout << "A is Pressed" << "\n";
 
-				if (manager.isKeyPressed("S") == true)
-					std::cout << "S is Pressed" << "\n";
+				if (manager.isKeyPressed("S") == true){}
+				//std::cout << "S is Pressed" << "\n";
 
-				if (manager.isKeyPressed("D") == true)
-					std::cout << "D is Pressed" << "\n";
+				if (manager.isKeyPressed("D") == true){}
+				//std::cout << "D is Pressed" << "\n";
 
 				if (manager.isKeyPressed("X") == true)
+				{
 					exit(0);
+				}
+
 				break;
 
 			default:
@@ -161,13 +172,17 @@ void main()
 			};
 		}
 
+		controller.Update();
+
 		window.Clear(sf::Color::Black);
 		OpenGL::clearBuffers();
 
-		//camera.BindToShader(testShader, "MVP");
+		joshTest.Activate();
 
-		//testShader.use();
+		gl::UniformMatrix4fv(camera->MatrixID(), 1, gl::FALSE_, &(camera->MVP_Matrix())[0][0]);
 
+		terrain->Render();
+		
 		//window.Begin();
 		//window.Draw(text);		//<---------------  Uncommenting this will make the program stop rendering the triangle onscreen.
 		//window.End();
@@ -180,7 +195,11 @@ void main()
 
 		OpenGL::disableVertexAttributes(true);
 
+		joshTest.Deactivate();
+
 		window.Display();
 	}
+
+	terrain->Destroy();
 	
 }

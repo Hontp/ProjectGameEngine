@@ -101,6 +101,7 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IRenderer.cpp" />
+    <ClCompile Include="JVShader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MeshLoader.cpp" />
@@ -120,6 +121,7 @@
     <ClCompile Include="SJWindow.cpp" />
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TerrainFactory.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timing.cpp" />
@@ -145,6 +147,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRenderer.h" />
+    <ClInclude Include="JVShader.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="MultiTexture.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="SJWindow.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TerrainFactory.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timing.h" />

@@ -2,20 +2,20 @@
 
 // Standard Libraries.
 #include <iostream>
+#include <gtc/matrix_transform.hpp>
 
 // Local headers. (Must be declared before glfw to avoid compilation error).
 #include "Camera.h"
+#include "SJWindow.h"
+#include "InputManager.h"
+#include "Timing.h"
 
 // 3D Graphics Libraries.
 #include <glm.hpp>
-//#include <GLFW/glfw3.h>
 #include <SFML\Graphics.hpp>
-#include "SJWindow.h"
-#include <gtc/matrix_transform.hpp>
 
 // External handle for the currently opened window.
-//extern GLFWwindow* window;
-extern SJWindow _window;
+//extern SJWindow _window;
 
 /** This container variable keeps track of whether or not a key is currently pressed.
 
@@ -49,7 +49,7 @@ struct KeyState{
 class CameraController{
 
     public:
-        CameraController(Camera* _camera, float _speed) { camera = _camera; speed = _speed; mouseSpeed = 0.005f; FlyMode = false; walkingPos.y = 0.0f; };  // Constructor.
+		CameraController(SJWindow* _window, InputManager* _manager, Camera* _camera, float _speed, Timing* clock);
         ~CameraController(void) {};     // Destructor.
 
         void Update();      // Update the camera. Should be called each frame.
@@ -76,6 +76,10 @@ class CameraController{
         // Used for smoothing the camera's movement and rotation according to the framerate.
         double currentTime;
         float deltaTime;
+
+		InputManager* manager;		// Local handle for the engine's input manager.
+		Timing* timer;
+		SJWindow* window;
 
         // Used for toggle controls.
         KeyState oldToggles;

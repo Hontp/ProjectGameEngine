@@ -10,8 +10,8 @@ SFML_Timing::~SFML_Timing()
 {
 }
 
-float SFML_Timing::getElapsedTime()
+float SFML_Timing::getElapsedTotalTime()
 {
-	time = clock.restart();
-	return(time.asMicroseconds());
+	time = clock.getElapsedTime();
+	return(time.asMilliseconds());
 }
