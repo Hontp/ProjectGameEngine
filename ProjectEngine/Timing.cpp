@@ -9,3 +9,8 @@ Timing::Timing()
 Timing::~Timing()
 {
 }
+
+float Timing::getElapsedTime()
+{
+	return timer.getElapsedTime();
+}

@@ -112,6 +112,7 @@
     <ClCompile Include="RendererFactory.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SFML_Timing.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="ShaderReader.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="RendererFactory.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SFML_Timing.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="ShaderReader.h" />
