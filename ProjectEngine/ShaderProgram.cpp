@@ -37,9 +37,18 @@ void ShaderProgram::linkProgram()
 		// Check the status
 		GLint linkStatus;
 		gl::GetProgramiv(programId, gl::LINK_STATUS, &linkStatus);
+
+		// Get the information of the linkage status.
+		int infoLength;
+		gl::GetProgramiv(programId, gl::INFO_LOG_LENGTH, &infoLength);
+
 		if (linkStatus == gl::FALSE_)
 		{
+			std::vector<char> ProgramErrorMessage(infoLength + 1);
 			std::cout << "Shader program linking failed." << std::endl;
+			gl::GetProgramInfoLog(programId, infoLength, NULL, &ProgramErrorMessage[0]);
+			printf("%s\n", &ProgramErrorMessage[0]);
+			ProgramErrorMessage.clear();
 		}
 		else
 		{

@@ -2,6 +2,7 @@
 
 // 3D Graphics libraries.
 #include "OpenGL.h"
+#include "ShaderProgram.h"
 #include "GLM.h"
 
 ///****************************************   IMPORTANT
@@ -96,7 +97,7 @@ class Camera{
         void SetWireFrameMode(bool ping);
 
         // Bind the camera to the currently running shader.
-		void BindToShader(GLuint shaderProgramID) { matrixID = OpenGL::CreateLinkToShader(shaderProgramID, "MVP"); }
+		void BindToShader(ShaderProgram shaderProgram, std::string uniform) { matrixID = shaderProgram.addUniform(uniform); }
 
 		/** @brief: Calculate the camera's Projection Matrix.
 

@@ -1,11 +1,14 @@
 #include "GraphicsCore.h"
-#include"SJWindow.h"
+#include "SJWindow.h"
 #include "Terrain.h"
 #include "Game.h"
 #include "InputManager.h"
 
+#include "Shader.h"
+#include "ShaderProgram.h"
 #include "ShaderReader.h"
 #include "GameAssetFactory.h"
+#include "Camera.h"
 #include <iostream>
 
 GLuint vArrayID;
@@ -17,21 +20,28 @@ void main()
 
 	SJWindow window;
 
+	// Interfaced OpenGL initialisation checking.
+	if (!GraphicsCore::Init(GraphicsCore::API::OPENGL))
+		return;
+
+	Shader vertexTest;
+	Shader fragmentTest;
+
+	ShaderProgram testShader;
+
+	Camera camera;
+
 	InputManager manager = InputManager();
 
 	//Game *game = new Game();
 
 	//game->Initialize();
-	
+
 	manager.InitKeys();
 
 	// create window
 	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
 		window.SetStyle("Default") , window.SetContextSettings());
-
-	// Interfaced OpenGL initialisation checking.
-	if (!GraphicsCore::Init(GraphicsCore::API::OPENGL))
-		return;
 
 	// Interfaced VAO generation and binding.
 	OpenGL::VAO_Gen(vArrayID);
@@ -62,6 +72,23 @@ void main()
 	container = ShaderReader::ReadShaderFile("shaders/dummyShaderFile.txt");
 
 	ofile << container;
+
+	vertexTest.loadfromFile("Shaders/vertex.shader");
+	vertexTest.compile();
+
+	fragmentTest.loadfromFile("Shaders/fragment.shader");
+	fragmentTest.compile();
+
+	testShader.attachShader(vertexTest);
+	testShader.attachShader(fragmentTest);
+
+	testShader.linkProgram();
+
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	///////////////////////////   CAMERA TEST HERE   /////////////////////////////////
+
+	//camera.Init(glm::vec3(0, 3, 1), glm::vec3(0, 0, 0), 45.0f, 0.1f, 1500.0f);
 
 	///////////////////////////////////////////////////////////////////////////////////////
 
@@ -137,7 +164,13 @@ void main()
 		window.Clear(sf::Color::Black);
 		OpenGL::clearBuffers();
 
-		//window.Draw(text);		<---------------  Uncommenting this will make the program stop rendering the triangle onscreen.
+		//camera.BindToShader(testShader, "MVP");
+
+		//testShader.use();
+
+		//window.Begin();
+		//window.Draw(text);		//<---------------  Uncommenting this will make the program stop rendering the triangle onscreen.
+		//window.End();
 
 		// Interfaced draw functions.
 		OpenGL::enableVertexAttributes(OpenGL::VERT_ATTRIBUTE::POSITION);

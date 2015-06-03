@@ -27,11 +27,19 @@ void SJWindow::Display()
 	window.display();
 }
 
+void SJWindow::Begin()
+{
+	window.pushGLStates();
+}
+
 void SJWindow::Draw(sf::Drawable &element)
 {
-	//window.pushGLStates();	//<----------- Uncommenting this causes an access violation error.
 	window.draw(element);
-	//window.popGLStates();		//<----------- Uncommenting this causes an access violation error.
+}
+
+void SJWindow::End()
+{
+	window.popGLStates();
 }
 
 void SJWindow::Clear(sf::Color color)

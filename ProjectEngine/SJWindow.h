@@ -78,11 +78,22 @@ public:
 	*/
 	void Display();
 
+	/** @brief: Enable 2D rendering.
+	
+	
+	*/
+	void Begin();
+
 	/**
 	* Draw an element on the window.
 	*
 	*/
 	void Draw(sf::Drawable &element);
+
+	/** @brief: Disable 2D rendering.
+	
+	*/
+	void End();
 
 	/**
 	* Clear rendered elements.
