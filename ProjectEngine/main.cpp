@@ -1,4 +1,4 @@
-#include "OpenGL.h"
+#include "GraphicsCore.h"
 #include "SJWindow.h"
 #include "TerrainFactory.h"
 #include "Game.h"
@@ -17,11 +17,22 @@ GLuint vBuffer;
 
 void main()
 {
+	//std::cout << "HELLO!!!!";
+
 	SJWindow window;
 
 	// Interfaced OpenGL initialisation checking.
-	if (!_OPENGL::getInstance()->Init())
+	if (!GraphicsCore::Init(GraphicsCore::API::OPENGL))
 		return;
+
+	GLenum ENUM = gl::VERTEX_SHADER;
+	Shader vertexTest(ENUM);
+	ENUM = gl::FRAGMENT_SHADER;
+	Shader fragmentTest(ENUM);
+
+	JVShader joshTest;
+
+	ShaderProgram testShader;
 
 	InputManager manager = InputManager();
 	Timing clock;
@@ -36,7 +47,8 @@ void main()
 	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
 		window.SetStyle("Default") , window.SetContextSettings());
 
-	///////////////////////////   GL_MODEL LOADING TEST HERE   /////////////////////////////////
+	// Interfaced VAO generation and binding.
+	OpenGL::VAO_Gen(vArrayID);
 
 	/////---- test triangle
 	float triangle[] =
@@ -45,25 +57,16 @@ void main()
 		1.0f, -1.0f, 0.0f,
 		0.0f, 1.0f, 0.0f,
 	};
-
-	float triangle_GREEN[] =
-	{
-		0.0f, 1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f
-	};
 	///----
 
-	GL_Model TRI;
-	TRI.InitData(triangle, sizeof(triangle), triangle_GREEN, sizeof(triangle_GREEN), nullptr, 0);
-
-	///////////////////////////////////////////////////////////////////////////////////////
+	// Interfaced VBO generation and populating.
+	GLuint vBufferID;
+	OpenGL::VBO_Gen(vBufferID, sizeof(triangle), triangle);
 
 	bool running = true;
 
-	///////////////////////////   SHADER LOADING TEST HERE   /////////////////////////////////
+	///////////////////////////   SHADER READER TEST HERE   /////////////////////////////////
 
-	JVShader joshTest;
 	joshTest.LoadFiles("Shaders/vertex.shader", "Shaders/fragment.shader");
 
 	///////////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +78,7 @@ void main()
 
 	CameraController controller(&window, &manager, camera, 1.0f, &clock);
 
-	camera->BindToShader(joshTest);
+	camera->BindToShader(joshTest, "MVP");
 
 	///////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,15 +86,15 @@ void main()
 
 	std::ofstream ofile("OUTPUT.txt");
 
-	Player* p = (Player*)GameAssetFactory::CreateNew(OBJ_ID::PLAYER, glm::vec3(0,0,0));
+	Player* p = (Player*)GameAssetFactory::CreateNew(OBJ_ID::PLAYER);
 
 	ofile << p->Describe();
 
-	NPC* n = (NPC*)GameAssetFactory::CreateNew(OBJ_ID::NPC, glm::vec3(0, 0, 0));
+	NPC* n = (NPC*)GameAssetFactory::CreateNew(OBJ_ID::NPC);
 
 	ofile << n->Describe();
 
-	StaticObject* o = (StaticObject*)GameAssetFactory::CreateNew(OBJ_ID::STATIC, glm::vec3(0, 0, 0));
+	StaticObject* o = (StaticObject*)GameAssetFactory::CreateNew(OBJ_ID::STATIC);
 
 	ofile << o->Describe();
 
@@ -120,14 +123,13 @@ void main()
 
 	///////////////////////////   TERRAIN GENERATION TEST HERE   //////////////////////////
 
-	TerrainFactory* tFactory = new TerrainFactory();
+	TerrainFactory tFactory;
 	Terrain* terrain;
 
-	tFactory->SetScaleFactor(1.0f, 0.1f, 1.0f);
-	tFactory->Init("HeightMap.raw", 128, "");
+	tFactory.SetScaleFactor(1.0f, 1.0f, 1.0f);
+	tFactory.Init("HeightMap.raw", 128, "");
 
-	GameAssetFactory::Init(tFactory);
-	terrain = (Terrain*)GameAssetFactory::CreateNew(OBJ_ID::TERRAIN, glm::vec3(3, 0, 3));
+	terrain = tFactory.BuildAt(glm::vec3(3, 0, 3));
 
 	///////////////////////////////////////////////////////////////////////////////////////
 
@@ -173,22 +175,26 @@ void main()
 		}
 
 		controller.Update();
-
-		_OPENGL::getInstance()->ClearBuffers();
-		window.GetWindow()->clear(sf::Color::Black);
-
+		OpenGL::clearBuffers();
 		joshTest.Activate();
 
-		_OPENGL::getInstance()->BindMatrixToShader(camera->MatrixID(), camera->MVP_Matrix());
+		gl::UniformMatrix4fv(camera->MatrixID(), 1, gl::FALSE_, &(camera->MVP_Matrix())[0][0]);
 
 		terrain->Render();
-		TRI.Render();
+		
+		// Interfaced draw functions.
+		OpenGL::enableVertexAttributes(OpenGL::VERT_ATTRIBUTE::POSITION);
+		OpenGL::BindBuffer(OpenGL::VERT_ATTRIBUTE::POSITION, vBufferID);
+
+		OpenGL::DrawAsTriangles(sizeof(triangle));
+
+		OpenGL::disableVertexAttributes(true);
 
 		joshTest.Deactivate();
 
-		//window.PushState();
-		//window.Draw(text);
-		//window.PopState();
+		window.PushState();
+		window.Draw(text);
+		window.PopState();
 
 
 		window.Display();

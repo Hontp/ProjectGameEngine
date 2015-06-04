@@ -9,17 +9,13 @@
 
 /** @class: Camera.
 
-	@author: Joshua Voysey.
-	@date: 31st May 2015.
-	@version: 1.1
-
-    Description:    The Camera class is a basic projection class that alters the 2D screen co-ordinates of 3D vertices to simulate a first-person perspective.
-                    Intended to be bound to a CameraController object for an FPS-style world interface.
+    Description:    The Camera class is a basic projection class that alters the 2D co-ordinates of onnscreen vertices to simulate a first-person perspective.
+                    This class is a static object. See CameraController child class for Camera with implemented movement and orientation controls.
 */
 class Camera{
 
     public:
-		Camera() { ModelMatrix = glm::mat4(1.0f); };      // Constructor.
+        Camera(void) {ModelMatrix = glm::mat4(1.0f);};      // Constructor.
         ~Camera(void) {};                                   // Destructor.
 
 		/** @brief: Initialise a Camera object.
@@ -100,19 +96,8 @@ class Camera{
 		*/
         void SetWireFrameMode(bool ping);
 
-		/** @brief: Link the camera's MVP matrix to the specified shader.
-
-			Description: Link any transformations in the camera's MVP matrix to the specified shader's geometry calculations.
-
-			@param: shaderProgram (JVShader) - Shader that is being linked to.
-
-			@return: NONE.
-
-			@pre: The vertex shader should have a matrix parameter called MVP, which represents the shader's Model-View-Projection matrix.
-
-			@post: The camera is now linked to the vertex shader.
-		*/
-		void BindToShader(JVShader shaderProgram) { matrixID = gl::GetUniformLocation(shaderProgram.Program(), "MVP"); }
+        // Bind the camera to the currently running shader.
+		void BindToShader(JVShader shaderProgram, std::string uniform) { matrixID = gl::GetUniformLocation(shaderProgram.Program(), uniform.c_str()); }
 
 		/** @brief: Calculate the camera's Projection Matrix.
 
@@ -146,12 +131,9 @@ class Camera{
 
 		// Access certain internal variables.
 		GLuint MatrixID() const { return matrixID; };
-		glm::mat4 MVP_Matrix() const  { return MVP; };
-		glm::mat4 View_Matrix() const { return ViewMatrix; };
-		glm::mat4 Proj_Matrix() const { return ProjMatrix; };
-		glm::vec3 GetPosition() const;
-		glm::vec3 GetUpVector() const;
-
+		glm::mat4 MVP_Matrix()  { return MVP; };
+        glm::vec3 GetPosition();
+        glm::vec3 GetUpVector();
         void SetViewMatrix(glm::mat4 newView);
         void SetPosition(glm::vec3 newPosition);
 

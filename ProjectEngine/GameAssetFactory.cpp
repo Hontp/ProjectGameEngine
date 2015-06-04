@@ -1,8 +1,17 @@
 #include "GameAssetFactory.h"
 
-TerrainFactory* GameAssetFactory::factory = nullptr;
+/**	@brief: Create a new GameObject object.
 
-GameObject* GameAssetFactory::CreateNew(unsigned short ID, glm::vec3 position){
+	@param: ID (unsigned short) - Specify the type of object that is being created.
+
+	Description: Factory method for creating any / all types of game assets. This method is STATIC.
+
+	@return: A GameObject object pointer.
+
+	NOTE:	Cast the pointer to a pointer of the desired child class when this method is called.
+			E.G. Player* p = (Player*)GameAssetFactory::CreateNew(OBJ_ID::PLAYER);
+*/
+GameObject* GameAssetFactory::CreateNew(unsigned short ID){
 
 	GameObject* obj = nullptr;
 
@@ -18,16 +27,10 @@ GameObject* GameAssetFactory::CreateNew(unsigned short ID, glm::vec3 position){
 			break;
 		case OBJ_ID::TERRAIN:
 			/// TODO: Create a terrain object.
-			obj = factory->BuildAt(position);
 			break;
 		default:
 			obj = nullptr;
 	}
 
 	return obj;
-}
-
-void GameAssetFactory::Init(TerrainFactory* _factory)
-{
-	factory = _factory;
 }

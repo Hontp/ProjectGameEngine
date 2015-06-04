@@ -74,16 +74,21 @@ void Camera::RecalcMVPMatrix()
 void Camera::SetWireFrameMode(bool ping)
 {
 
-	_OPENGL::getInstance()->WireFrameMode(ping);
+    if(ping){
+		OpenGL::DisplayAs_WireFrame();
+    }
+    else{
+		OpenGL::DisplayAs_Fill();
+    }
 
 }
 
-glm::vec3 Camera::GetPosition() const
+glm::vec3 Camera::GetPosition()
 {
     return Position;
 }
 
-glm::vec3 Camera::GetUpVector() const
+glm::vec3 Camera::GetUpVector()
 {
     return Up;
 }
