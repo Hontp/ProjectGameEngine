@@ -1,5 +1,6 @@
 #include "OpenGL.h"
 
+/*
 bool OpenGL::colorAttrib = false;
 bool OpenGL::UVAttrib = false;
 bool OpenGL::vertexAttrib = false;
@@ -220,4 +221,139 @@ void OpenGL::Tex_SetFilteringToNearest(GLuint textureHandle){
 	OpenGL::Tex_SetAsActive(textureHandle);
 	gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_MAG_FILTER, gl::NEAREST);
 	gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_MIN_FILTER, gl::NEAREST);
+}
+*/
+
+
+
+
+
+bool _OPENGL::Init()
+{
+	gl::exts::LoadTest test = gl::sys::LoadFunctions();
+
+	if (!test)
+		return false;
+	else
+		return true;
+}
+
+void _OPENGL::WireFrameMode(bool trueIfYes)
+{
+	if (trueIfYes)
+		gl::PolygonMode(gl::FRONT_AND_BACK, gl::LINE);
+	else
+		gl::PolygonMode(gl::FRONT_AND_BACK, gl::FILL);
+}
+
+void _OPENGL::ActivateTexture(GLuint textureHandle)
+{
+	gl::BindTexture(gl::TEXTURE_2D, textureHandle);
+}
+
+GLuint _OPENGL::MakevertexArray()
+{
+	GLuint vertexArrayID;
+
+	gl::GenVertexArrays(1, &vertexArrayID);
+	gl::BindVertexArray(vertexArrayID);
+
+	return vertexArrayID;
+}
+
+GLuint _OPENGL::MakeVertexBuffer(float data[], GLuint dataSize)
+{
+	GLuint vertexBufferID;
+
+	// Generate a VBO object.
+	gl::GenBuffers(1, &vertexBufferID);
+	gl::BindBuffer(gl::ARRAY_BUFFER, vertexBufferID);
+	gl::BufferData(gl::ARRAY_BUFFER, dataSize * sizeof(data), data, gl::STATIC_DRAW);
+
+	return vertexBufferID;
+}
+
+void _OPENGL::DeleteVertexObject(GLuint objectType, GLuint objectHandle)
+{
+	switch (objectType){
+		case ARRAY:
+			gl::DeleteVertexArrays(1, &objectHandle);
+			break;
+
+		case BUFFER:
+			gl::DeleteBuffers(1, &objectHandle);
+			break;
+
+		default:
+			break;
+	}
+	
+}
+
+void _OPENGL::ActivateVertexData(GLuint bufferHandle, GLuint attribute)
+{
+	switch (attribute){
+
+		case VERTEX:
+		case COLOR:
+
+			gl::EnableVertexAttribArray(attribute);
+			gl::BindBuffer(gl::ARRAY_BUFFER, bufferHandle);
+			gl::VertexAttribPointer(
+				attribute,					// attribute 0 (vert) / 1 (color).
+				3,							// size
+				gl::FLOAT,					// type: GLfloat
+				gl::FALSE_,					// normalized?
+				0,							// stride
+				(void*)0					// array buffer offset
+			);
+			break;
+
+		case UV:
+
+			gl::EnableVertexAttribArray(attribute);
+			gl::BindBuffer(gl::ARRAY_BUFFER, bufferHandle);
+			gl::VertexAttribPointer(
+				attribute,					// attribute 2.
+				2,                          // size
+				gl::FLOAT,                  // type: GLfloat
+				gl::FALSE_,                 // normalized?
+				0,							// stride
+				(void*)(0)					// array buffer offset
+			);
+			break;
+
+		default:
+			break;
+	}
+}
+
+void _OPENGL::DeactivateVertexData(GLuint attribute)
+{
+	switch (attribute){
+
+		case VERTEX:
+		case COLOR:
+		case UV:
+			gl::DisableVertexAttribArray(attribute);
+			break;
+
+		default:
+			break;
+	}
+}
+
+void _OPENGL::DrawModelVertices(GLuint size)
+{
+	gl::DrawArrays(gl::TRIANGLES, 0, size / 3);
+}
+
+void _OPENGL::BindMatrixToShader(GLuint shaderAttribID, glm::mat4 matrix)
+{
+	gl::UniformMatrix4fv(shaderAttribID, 1, gl::FALSE_, &matrix[0][0]);
+}
+
+void _OPENGL::ClearBuffers()
+{
+	gl::Clear(gl::COLOR_BUFFER_BIT | gl::DEPTH_BUFFER_BIT);
 }

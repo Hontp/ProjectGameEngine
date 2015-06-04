@@ -11,11 +11,11 @@ public:
 		return &instance;
 	}
 
-private:
+protected:
 
 	/// Hide all methods of copying.
-	Singleton();
-	~Singleton();
+	Singleton(){};
+	~Singleton(){};
 	Singleton(const Singleton &);
 	Singleton &operator=(const Singleton &);
 };

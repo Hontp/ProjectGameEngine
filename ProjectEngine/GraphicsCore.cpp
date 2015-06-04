@@ -1,6 +1,6 @@
 #include "GraphicsCore.h"
 
-static unsigned short _API = NULL;
+/*static unsigned short _API = NULL;
 ImageLoader* GraphicsCore::imgLoader = new ImageLoader();
 GLenum GraphicsCore::GL_tex_layers[] = { OpenGL::TEX_LAYERS::LAYER1, OpenGL::TEX_LAYERS::LAYER2, OpenGL::TEX_LAYERS::LAYER3 };
 
@@ -198,4 +198,4 @@ void GraphicsCore::ClearBuffers(){
 		break;
 	}
 
-}
+}*/

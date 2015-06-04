@@ -11,11 +11,7 @@
 #include "Timing.h"
 
 // 3D Graphics Libraries.
-#include <glm.hpp>
 #include <SFML\Graphics.hpp>
-
-// External handle for the currently opened window.
-//extern SJWindow _window;
 
 /** This container variable keeps track of whether or not a key is currently pressed.
 
@@ -52,15 +48,40 @@ class CameraController{
 		CameraController(SJWindow* _window, InputManager* _manager, Camera* _camera, float _speed, Timing* clock);
         ~CameraController(void) {};     // Destructor.
 
-        void Update();      // Update the camera. Should be called each frame.
+		/** @brief: Update function for all inputs that affect the CameraController object.
 
+			Description:    User input is read by this function every frame.
+			The camera's various matrices are then recalculated to reflect any changes that the user applies to the camera's position or rotation.
+
+			@pre: CameraController object should be initialised.
+
+			@post: CameraController behaviour and display is now updated based on any key input detection.
+		*/
+        void Update();
+
+		/** @brief: Walking mode position of the camera.
+
+			@return: the vector containing the position co-ordinates of the camera when it is not in fly mode.
+
+			@pre: CameraController object should be initialised.
+
+			@post: NONE.
+		*/
         glm::vec3 WalkingPos(); // Get the co-ordinates of the camera when it is not flying.
 
+		/** @brief: Access the bound camera.
+
+			@return: A pointer to the internal camera being manipulated.
+
+			@pre: CameraController object should be initialised.
+
+			@post: NONE.
+		*/
         Camera* GetCamera();
 
     private:
 
-        Camera* camera;
+        Camera* camera;				// Camera that is being controlled by the CameraController.
 
         float speed, mouseSpeed;    // Used for controlling the movement and rotation speeds of the camera.
 
@@ -78,11 +99,10 @@ class CameraController{
         float deltaTime;
 
 		InputManager* manager;		// Local handle for the engine's input manager.
-		Timing* timer;
-		SJWindow* window;
+		Timing* timer;				// Timer object used for smooth movement.
+		SJWindow* window;			// Local handle for the window that the Camera is drawing to.
 
-        // Used for toggle controls.
-        KeyState oldToggles;
+        KeyState oldToggles;		// Used for toggle controls.
 
-        glm::vec3 walkingPos;       // Set the CameraController object's height when it is not in fly mode.
+        glm::vec3 walkingPos;       // The CameraController object's position when it is not in FLY mode.
 };
