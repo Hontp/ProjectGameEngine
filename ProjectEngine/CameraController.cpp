@@ -65,22 +65,22 @@ void CameraController::Update(){
     if(MouseClamp){
 
         // Get current mouse position.
-		sf::Vector2i mousePos = sf::Mouse::getPosition(*window->Base());
+		sf::Vector2i mousePos = sf::Mouse::getPosition(*window->GetWindow());
 		
 		mouseX = mousePos.x;
 		mouseY = mousePos.y;
 
         // Clamp current mouse position to centre of window.
-		sf::Mouse::setPosition(sf::Vector2i(window->Base()->getSize().x / 2, window->Base()->getSize().y / 2), *window->Base());
+		sf::Mouse::setPosition(sf::Vector2i(window->GetWindow()->getSize().x / 2, window->GetWindow()->getSize().y / 2), *window->GetWindow());
     }
     else{
-		mouseX = float(window->Base()->getSize().x / 2);
-		mouseY = float(window->Base()->getSize().y / 2);
+		mouseX = float(window->GetWindow()->getSize().x / 2);
+		mouseY = float(window->GetWindow()->getSize().y / 2);
     }
 
     // Adjust the container values for rotation according to the mouse movement.
-	horizontalAngle += mouseSpeed * float((window->Base()->getSize().x / 2) - mouseX);
-	verticalAngle += mouseSpeed * float((window->Base()->getSize().y / 2)- mouseY);
+	horizontalAngle += mouseSpeed * float((window->GetWindow()->getSize().x / 2) - mouseX);
+	verticalAngle += mouseSpeed * float((window->GetWindow()->getSize().y / 2)- mouseY);
 
     // Lock vertical looking angle to a certain range. Prevents player disorientation by ensuring intuitive head-movement behaviour.
     if(verticalAngle > 1.2f)

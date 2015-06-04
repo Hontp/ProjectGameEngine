@@ -3,7 +3,7 @@
 
 #include<SFML/Window.hpp>
 
-typedef sf::Event Events;
+typedef sf::Event IEvent;
 typedef sf::Event::KeyEvent KeyCode;
 typedef sf::Event::EventType EventTypes;
 typedef sf::Keyboard::Key Keys;

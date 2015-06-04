@@ -116,6 +116,8 @@ void main()
 		std::cout << "Error: could not find file: '" << "Fonts/arial.ttf" << "'." << std::endl;
 	}
 	sf::Text text("GameName", font, 50);
+	text.setColor(sf::Color(255, 0, 0, 255));
+	text.setPosition(sf::Vector2f(0, 0));
 
 	///////////////////////////////////////////////////////////////////////////////////////
 
@@ -137,17 +139,17 @@ void main()
 	while (running)
 	{
 
-		Events event;
+		IEvent event;
 		while (window.GetEvent(event))
 		{
 			switch (event.type)
 			{
 
-			case Events::Closed:
+			case IEvent::Closed:
 				running = false;
 				break;
 
-			case Events::KeyPressed:				
+			case IEvent::KeyPressed:				
 				if (manager.isKeyPressed("W") == true){}
 					//std::cout << "W is Pressed" << "\n";
 
@@ -173,20 +175,13 @@ void main()
 		}
 
 		controller.Update();
-
-		window.Clear(sf::Color::Black);
 		OpenGL::clearBuffers();
-
 		joshTest.Activate();
 
 		gl::UniformMatrix4fv(camera->MatrixID(), 1, gl::FALSE_, &(camera->MVP_Matrix())[0][0]);
 
 		terrain->Render();
 		
-		//window.Begin();
-		//window.Draw(text);		//<---------------  Uncommenting this will make the program stop rendering the triangle onscreen.
-		//window.End();
-
 		// Interfaced draw functions.
 		OpenGL::enableVertexAttributes(OpenGL::VERT_ATTRIBUTE::POSITION);
 		OpenGL::BindBuffer(OpenGL::VERT_ATTRIBUTE::POSITION, vBufferID);
@@ -197,9 +192,14 @@ void main()
 
 		joshTest.Deactivate();
 
-		window.Display();
-	}
+		window.PushState();
+		window.Draw(text);
+		window.PopState();
 
-	terrain->Destroy();
+
+		window.Display();
+		
+	}
 	
+	terrain->Destroy();
 }

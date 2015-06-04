@@ -10,46 +10,44 @@ SJWindow::SJWindow()
 	winStyle.insert({ "Titlebar", Style::Titlebar });
 }
 
-SJWindow::~SJWindow(){}
+SJWindow::~SJWindow()
+{
+	delete window;
+}
 
 void SJWindow::CreateMainWindow(sf::VideoMode& Mode, const std::string& Title, UINT32 Style, sf::ContextSettings& settings)
 {
-	window.create(Mode, Title, Style, settings);
+	window->create(Mode, Title, Style, settings);
+}
+
+sf::RenderWindow* SJWindow::GetWindow()
+{
+	return window;
 }
 
 bool SJWindow::GetEvent(sf::Event& events)
 {
-	return window.pollEvent(events);
+	return window->pollEvent(events);
 }
 
 void SJWindow::Display()
 {
-	window.display();
+	window->display();
 }
 
-void SJWindow::Begin()
+void SJWindow::PushState()
 {
-	window.pushGLStates();
+	window->pushGLStates();
+}
+
+void SJWindow::PopState()
+{
+	window->popGLStates();
 }
 
 void SJWindow::Draw(sf::Drawable &element)
 {
-	window.draw(element);
-}
-
-void SJWindow::End()
-{
-	window.popGLStates();
-}
-
-sf::RenderWindow* SJWindow::Base()
-{
-	return &window;
-}
-
-void SJWindow::Clear(sf::Color color)
-{
-	window.clear(color);
+	window->draw(element);
 }
 
 sf::ContextSettings SJWindow::SetContextSettings(unsigned int depth, unsigned int stencil,

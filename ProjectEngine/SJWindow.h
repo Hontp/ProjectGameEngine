@@ -9,7 +9,7 @@
  * @section DESCRIPTION
  *
  * Window Creation class
- * this class wraps the SFML libary
+ * this class wraps the SFML library
  * to create a new window 
  */
 
@@ -19,12 +19,17 @@
 #include<string>
 #include<map>
 
+#include "IEvents.h"
+
+typedef sf::RenderWindow SJTarget;
+
 class SJWindow
 {
+
 private:
 
-	// underlying SFML window object
-	sf::RenderWindow window;
+	// pointer underlying SFML window object
+	SJTarget *window = new SJTarget;
 
 	// SFML contextSettings object
 	sf::ContextSettings setting;
@@ -60,9 +65,16 @@ public:
 	 * @param VideoMode Screen size height and width as integer
 	 * @param Title the window caption
 	 * @param Style a window border style
-	 * @param settings information about Depthbits, StencilBits, AntiAliasing
+	 * @param settings information about Depth bits, StencilBits, AntiAliasing
 	 */
 	void CreateMainWindow(sf::VideoMode& Mode, const std::string& Title, UINT32 Style , sf::ContextSettings& settings);
+
+	/**
+	* Get Window Context
+	* 
+	* @return the address location of the window
+	*/
+	SJTarget* GetWindow();
 
 	/**
 	 * Get Window Event
@@ -70,7 +82,7 @@ public:
 	 * @return true if a polled event fires
 	 *
 	 */
-	bool GetEvent(sf::Event & events);
+	bool GetEvent(IEvent & events);
 
 	/**
 	* Display Window
@@ -78,31 +90,26 @@ public:
 	*/
 	void Display();
 
-	/** @brief: Enable 2D rendering.
-	
-	
-	*/
-	void Begin();
 
 	/**
-	* Draw an element on the window.
+	* Save the current OpenGL state
+	* to the Stack
+	*/	
+	void PushState();
+
+	/**
+	* Restore the previous OpenGL state
+	* from the stack
+	*/
+	void PopState();
+
+
+	/**
+	* Draw Elements
 	*
+	*@param elements
 	*/
 	void Draw(sf::Drawable &element);
-
-	/** @brief: Disable 2D rendering.
-	
-	*/
-	void End();
-
-	sf::RenderWindow* Base();
-
-	/**
-	* Clear rendered elements.
-	*
-	*/
-	void Clear(sf::Color color = sf::Color::Blue);
-
 	/**
 	 * Set Window Border Style
 	 *
@@ -123,7 +130,7 @@ public:
 	 * @param Major
 	 * @param Minor
 	 *
-	 * @return ContextSettings Object for use in underlying SFML libary
+	 * @return ContextSettings Object for use in underlying SFML library
 	 */
 	sf::ContextSettings SetContextSettings(unsigned int depth = 0, unsigned int stencil = 0, 
 						unsigned int antialiasing = 0, unsigned int major = 2, unsigned int minor = 0);
