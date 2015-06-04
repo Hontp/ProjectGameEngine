@@ -1,34 +1,34 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <vector>
+#include <TGUI/TGUI.hpp>
+#include <string>
+#include <glm.hpp>
+#include "IEvents.h"
 
-#include "HUD_Element.h"
-#include "SJWindow.h"
+typedef tgui::Callback Callback;
 
 class HUD
 {
-	public:
-		HUD(SJWindow* _window);
-		~HUD();
+private:
+	tgui::Gui *Igui;
+	
+public:
+	HUD();
+	~HUD();
 
-		void Add(std::string keyIndex, HUD_Element* element);
-		void AddSupportedFont(std::string keyIndex, std::string fontFile);
+	tgui::Gui* GetGUI();
+	
+	void HUDInit(sf::RenderWindow* target);
+	void SetFont(std::string fontPath);
+	
+	void HUDEvent(IEvent events);
+	
+	bool GetCallbackEvent(tgui::Callback callback);
 
-		void Remove(std::string keyIndex);
-		void RemoveSupportedFont(std::string keyIndex);
+	void Draw();
 
-		HUD_Element* Get(std::string keyIndex);
-		std::string GetSupportedFont(std::string keyIndex);
-
-		void Draw();
-
-	private:
-
-		SJWindow* window;
-		std::map<std::string, HUD_Element*> Elements;
-		std::vector<std::string> elementReferences;
-
-		std::map<std::string, std::string> Fonts;
+	void CreateHUDBox(tgui::Gui& gui, std::string image, glm::vec2 size, glm::vec2 position);
+	void CreateLabel(tgui::Gui& gui, std::string text, glm::vec2 position);
+	void CreateInputBox(tgui::Gui& gui, std::string wName, std::string wConfig, glm::vec2 size, glm::vec2 position);
+	void CreateButton(tgui::Gui& gui, std::string wConfig, glm::vec2 size, glm::vec2 position, std::string text);
 };
-

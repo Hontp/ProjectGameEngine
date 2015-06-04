@@ -1,11 +1,10 @@
-﻿Build started 6/4/2015 2:41:12 PM.
+﻿Build started 6/5/2015 12:33:25 AM.
      1>Project "C:\Users\Tan\Documents\GitHub\ProjectGameEngine\ProjectEngine\ProjectEngine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D SFML_STATIC /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Tan\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.exe" /INCREMENTAL /NOLOGO opengl32.lib jpeg.lib "sfml-main-d.lib" winmm.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" freetype.lib glew.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Tan\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Tan\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.lib" /MACHINE:X86 Debug\Camera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Tan\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.exe" /INCREMENTAL /NOLOGO "tgui-s-d.lib" opengl32.lib jpeg.lib "sfml-main-d.lib" winmm.lib "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" freetype.lib glew.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Tan\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Tan\Documents\GitHub\ProjectGameEngine\Debug\ProjectEngine.lib" /MACHINE:X86 Debug\Camera.obj
          Debug\CameraController.obj
          Debug\DynamicObject.obj
          Debug\Engine.obj
@@ -16,7 +15,6 @@
          Debug\gl_core_4_3.obj
          Debug\GraphicsCore.obj
          Debug\HUD.obj
-         Debug\HUD_Element.obj
          Debug\IAsset.obj
          Debug\ImageLoader.obj
          Debug\InputHandler.obj
@@ -52,4 +50,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.94
+Time Elapsed 00:00:01.11

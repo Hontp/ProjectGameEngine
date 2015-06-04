@@ -10,6 +10,7 @@
 #include "GameAssetFactory.h"
 #include "CameraController.h"
 #include "Timing.h"
+#include "HUD.h"
 #include <iostream>
 
 GLuint vArrayID;
@@ -19,11 +20,43 @@ void main()
 {
 	//std::cout << "HELLO!!!!";
 
-	SJWindow window;
+	SJWindow *window = new SJWindow();
+	
+	InputManager manager = InputManager();
+	Timing clock;
 
-	// Interfaced OpenGL initialisation checking.
+	HUD hud = HUD();
+
+	//Game *game = new Game();
+
+	//game->Initialize();
+
+	manager.InitKeys();
+
+	// create window
+	window->CreateMainWindow(window->SetVideoMode(800, 600, 32), "OpenGL Window",
+		window->SetStyle("Default"), window->SetContextSettings());
+
+
+	// Interfaced OpenGL initialization checking.
 	if (!GraphicsCore::Init(GraphicsCore::API::OPENGL))
 		return;
+
+	// initialize hud component
+	hud.HUDInit(window->GetWindow());
+
+	// set font
+	hud.SetFont("UI/Fonts/DejaVuSans.ttf");
+
+	// create a box
+	hud.CreateHUDBox(*hud.GetGUI(), "UI/Background/background.png", glm::vec2(200, 200), glm::vec2(600, 0));
+
+	// create a button widget
+	hud.CreateButton(*hud.GetGUI(), "UI/widgets/BabyBlue.conf", glm::vec2(100, 100), glm::vec2(0, 0), "Test Button");
+
+	// create an text box
+	hud.CreateInputBox(*hud.GetGUI(), "TextBox", "UI/widgets/Black.conf", glm::vec2(150, 50), glm::vec2(300, 0));
+
 
 	GLenum ENUM = gl::VERTEX_SHADER;
 	Shader vertexTest(ENUM);
@@ -33,19 +66,6 @@ void main()
 	JVShader joshTest;
 
 	ShaderProgram testShader;
-
-	InputManager manager = InputManager();
-	Timing clock;
-
-	//Game *game = new Game();
-
-	//game->Initialize();
-
-	manager.InitKeys();
-
-	// create window
-	window.CreateMainWindow(window.SetVideoMode(800, 600, 32), "OpenGL Window", 
-		window.SetStyle("Default") , window.SetContextSettings());
 
 	// Interfaced VAO generation and binding.
 	OpenGL::VAO_Gen(vArrayID);
@@ -76,7 +96,7 @@ void main()
 	Camera* camera = new Camera();
 	camera->Init(glm::vec3(0, 3, 1), glm::vec3(0, 0, 0), 45.0f, 0.1f, 1500.0f);
 
-	CameraController controller(&window, &manager, camera, 1.0f, &clock);
+	CameraController controller(window, &manager, camera, 1.0f, &clock);
 
 	camera->BindToShader(joshTest, "MVP");
 
@@ -140,8 +160,10 @@ void main()
 	{
 
 		IEvent event;
-		while (window.GetEvent(event))
+		while (window->GetEvent(event))
 		{
+			hud.HUDEvent(event);
+
 			switch (event.type)
 			{
 
@@ -164,7 +186,7 @@ void main()
 
 				if (manager.isKeyPressed("X") == true)
 				{
-					exit(0);
+					
 				}
 
 				break;
@@ -190,14 +212,20 @@ void main()
 
 		OpenGL::disableVertexAttributes(true);
 
+		// unbind array buffers	
+		gl::BindBuffer(gl::ARRAY_BUFFER, 0);
+		gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, 0);
+
+
 		joshTest.Deactivate();
 
-		window.PushState();
-		window.Draw(text);
-		window.PopState();
+		window->PushState();
+		//window.Draw(text);
+		hud.Draw();
+		window->PopState();
 
 
-		window.Display();
+		window->Display();
 		
 	}
 	

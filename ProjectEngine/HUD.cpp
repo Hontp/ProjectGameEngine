@@ -1,50 +1,78 @@
 #include "HUD.h"
 
 
-HUD::HUD(SJWindow* _window)
+HUD::HUD()
 {
-	window = _window;
+	Igui = new tgui::Gui();
 }
 
-HUD::~HUD()
+tgui::Gui* HUD::GetGUI()
 {
-	window = nullptr;
+	return Igui;
 }
 
-void HUD::Add(std::string keyIndex, HUD_Element* element)
+void HUD::HUDInit(sf::RenderWindow* target)
 {
-	Elements.insert(std::pair<std::string, HUD_Element*>(keyIndex, element));
-	elementReferences.push_back(keyIndex);
+	Igui->setWindow(*target);
 }
 
-void HUD::AddSupportedFont(std::string keyIndex, std::string fontFile)
+void HUD::HUDEvent(IEvent event)
 {
-	Fonts.insert(std::pair<std::string, std::string>(keyIndex, fontFile));
+	Igui->handleEvent(event);
 }
 
-void HUD::Remove(std::string keyIndex)
+bool HUD::GetCallbackEvent(tgui::Callback callback)
 {
-	Elements.erase(keyIndex);
+	return Igui->pollCallback(callback);
 }
 
-void HUD::RemoveSupportedFont(std::string keyIndex)
+void HUD::SetFont(std::string fontPath)
 {
-	Fonts.erase(keyIndex);
-}
-
-HUD_Element* HUD::Get(std::string keyIndex)
-{
-	return Elements[keyIndex];
-}
-
-std::string HUD::GetSupportedFont(std::string keyIndex)
-{
-	return Fonts[keyIndex];
+	Igui->setGlobalFont(fontPath);
 }
 
 void HUD::Draw()
 {
-	for (unsigned int i = 0; i < Elements.size(); i++){
-		window->Draw(Elements[elementReferences[i]]->GetText().Get());
-	}
+	Igui->draw();
+}
+
+
+void HUD::CreateHUDBox(tgui::Gui& gui, std::string image, glm::vec2 size, glm::vec2 position)
+{
+	tgui::Picture::Ptr background(gui);
+	background->load(image);
+	background->setSize(size.r, size.g);
+	background->setPosition(position.r, position.g);
+}
+
+void HUD::CreateLabel(tgui::Gui& gui, std::string text, glm::vec2 position)
+{
+	tgui::Label::Ptr label(gui);
+	label->setText(text);
+	label->setPosition(position.r, position.g);
+}
+
+void HUD::CreateInputBox(tgui::Gui& gui,std::string wName, std::string wConfig, 
+	glm::vec2 size, glm::vec2 position)
+{
+	tgui::EditBox::Ptr textbox(gui, wName);
+	textbox->load(wConfig);
+	textbox->setSize(size.r, size.g);
+	textbox->setPosition(position.r, position.g);
+}
+
+void HUD::CreateButton(tgui::Gui& gui, std::string wConfig, glm::vec2 size, glm::vec2 position,
+	std::string text)
+{
+	tgui::Button::Ptr button(gui);
+	button->load(wConfig);
+	button->setSize(size.r, size.g);
+	button->setPosition(position.r, position.g);
+	button->setText(text);
+
+}
+
+HUD::~HUD()
+{
+	delete Igui;
 }
