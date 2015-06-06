@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "Timing.h"
 
 
 Window::Window()
@@ -32,9 +33,4 @@ void Window::Initialize(std::string name, int h, int w, int bp)
 	BPP = bp;
 
 	window.CreateMainWindow(window.SetVideoMode(height, width, BPP), windowName, window.SetStyle("Default"), window.SetContextSettings());
-}
-
-float Window::getElaspedTime()
-{
-	return 1.0f;
 }

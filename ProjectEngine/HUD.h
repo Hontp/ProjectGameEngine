@@ -31,4 +31,6 @@ public:
 	void CreateLabel(tgui::Gui& gui, std::string text, glm::vec2 position);
 	void CreateInputBox(tgui::Gui& gui, std::string wName, std::string wConfig, glm::vec2 size, glm::vec2 position);
 	void CreateButton(tgui::Gui& gui, std::string wConfig, glm::vec2 size, glm::vec2 position, std::string text);
+
+	void setLabelText(std::string text);
 };

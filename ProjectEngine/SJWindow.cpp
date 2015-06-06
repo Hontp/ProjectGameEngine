@@ -77,6 +77,16 @@ float SJWindow::getElaspedTime()
 }
 
 
+void SJWindow::closeWindow()
+{
+	window->close();
+}
+
+void SJWindow::clearWindow()
+{
+	window->clear();
+}
+
 UINT32 SJWindow::SetStyle(std::string StyleName)
 {
 	UINT32 style;

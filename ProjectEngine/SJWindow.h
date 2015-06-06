@@ -146,6 +146,10 @@ public:
 
 	float getElaspedTime();
 
+	void closeWindow();
+
+	void clearWindow();
+
 	
 
 };

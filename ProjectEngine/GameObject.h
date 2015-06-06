@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <gtc/quaternion.hpp>
 
 class OBJ_ID{
 
@@ -27,7 +28,7 @@ class GameObject{
 		virtual void Draw(){};
 
 	protected:
-
-		float rotation;
+		glm::vec3 position;
+		glm::quat orientation;
 		// TODO: Add a vector3 equivalent parameter for position.
 };

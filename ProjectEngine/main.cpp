@@ -12,6 +12,7 @@
 #include "Timing.h"
 #include "HUD.h"
 #include <iostream>
+#include <TGUI/TGUI.hpp>
 
 GLuint vArrayID;
 GLuint vBuffer;
@@ -36,26 +37,46 @@ void main()
 	// create window
 	window->CreateMainWindow(window->SetVideoMode(800, 600, 32), "OpenGL Window",
 		window->SetStyle("Default"), window->SetContextSettings());
+	tgui::Gui gui(*(window->GetWindow()));
 
+	if (gui.setGlobalFont("UI/Fonts/DejaVuSans.ttf"))
+	{
+		std::cout << "yay!";
+	}
+
+	tgui::EditBox::Ptr box(gui, "Textbox");
+	box->load("UI/widgets/Black.conf");
+	box->setSize(300,40);
+	box->setPosition(200, 140);
+
+
+
+	tgui::Button::Ptr button(gui,"Button");
+	button->load("UI/widgets/Black.conf");
+	button->setSize(260, 60);
+	button->setPosition(270,440);
+	button->setText("Login");
+	button->bindCallback(tgui::Button::LeftMouseClicked);
+	button->setCallbackId(1);
 
 	// Interfaced OpenGL initialization checking.
 	if (!GraphicsCore::Init(GraphicsCore::API::OPENGL))
 		return;
 
 	// initialize hud component
-	hud.HUDInit(window->GetWindow());
+	//hud.HUDInit(window->GetWindow());
 
 	// set font
-	hud.SetFont("UI/Fonts/DejaVuSans.ttf");
+	//hud.SetFont("UI/Fonts/DejaVuSans.ttf");
 
 	// create a box
-	hud.CreateHUDBox(*hud.GetGUI(), "UI/Background/background.png", glm::vec2(200, 200), glm::vec2(600, 0));
+	//hud.CreateHUDBox(*hud.GetGUI(), "UI/Background/background.png", glm::vec2(200, 200), glm::vec2(600, 0));
 
 	// create a button widget
-	hud.CreateButton(*hud.GetGUI(), "UI/widgets/BabyBlue.conf", glm::vec2(100, 100), glm::vec2(0, 0), "Test Button");
+	//hud.CreateButton(*hud.GetGUI(), "UI/widgets/BabyBlue.conf", glm::vec2(100, 100), glm::vec2(0, 0), "Test Button");
 
 	// create an text box
-	hud.CreateInputBox(*hud.GetGUI(), "TextBox", "UI/widgets/Black.conf", glm::vec2(150, 50), glm::vec2(300, 0));
+	//hud.CreateInputBox(*hud.GetGUI(), "TextBox", UI/widgets/Black.conf, glm::vec2(150, 50), glm::vec2(300, 0));
 
 
 	GLenum ENUM = gl::VERTEX_SHADER;
@@ -162,7 +183,6 @@ void main()
 		IEvent event;
 		while (window->GetEvent(event))
 		{
-			hud.HUDEvent(event);
 
 			switch (event.type)
 			{
@@ -186,7 +206,7 @@ void main()
 
 				if (manager.isKeyPressed("X") == true)
 				{
-					
+
 				}
 
 				break;
@@ -194,6 +214,19 @@ void main()
 			default:
 				break;
 			};
+
+			gui.handleEvent(event);
+		}
+
+		tgui::Callback callback;
+		while (gui.pollCallback(callback))
+		{
+			std::cout << "HELLO!!";
+			if (callback.id == 1)
+			{
+				tgui::EditBox::Ptr editbox = gui.get("Textbox");
+				editbox->setText("Hello!");
+			}
 		}
 
 		controller.Update();
@@ -219,15 +252,19 @@ void main()
 
 		joshTest.Deactivate();
 
-		window->PushState();
+		//window->clearWindow();
+		gui.draw();
+
+		//window->PushState();
 		//window.Draw(text);
-		hud.Draw();
-		window->PopState();
+		//hud.Draw();
+		//window->PopState();
 
-
+		window->Draw(text);
 		window->Display();
 		
 	}
 	
+	window->closeWindow();
 	terrain->Destroy();
 }
