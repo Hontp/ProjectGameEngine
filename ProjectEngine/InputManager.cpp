@@ -64,6 +64,11 @@ void InputManager::InitKeys()
 	keyEvent.eventType = (EventTypes)handler.InputEvents.KeyPressed;
 	keyEvent.keyCode = SJKeyboard::K;
 	handler.BindAction("K", keyEvent);
+
+	// bind manual key
+	keyEvent.eventType = (EventTypes)handler.InputEvents.KeyPressed;
+	keyEvent.keyCode = SJKeyboard::M;
+	handler.BindAction("M", keyEvent);
 }
 
 bool InputManager::isKeyPressed(std::string action)

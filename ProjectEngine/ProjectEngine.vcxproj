@@ -46,8 +46,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\dependencies\TGUI-0.6\include;..\dependencies\glm;..\dependencies\SFML-2.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\dependencies\TGUI-0.6\lib;..\dependencies\SFML-2.2\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\dependencies\TGUI-0.6\include;..\dependencies\glm;..\dependencies\SFML-2.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\dependencies\TGUI-0.6\lib;..\dependencies\SFML-2.3\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -61,7 +61,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>tgui-s-d.lib;opengl32.lib;jpeg.lib;sfml-main-d.lib;winmm.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;freetype.lib;glew.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tgui-s-d.lib;opengl32.lib;jpeg.lib;sfml-main-d.lib;winmm.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;freetype.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -104,6 +104,7 @@
     <ClCompile Include="JVShader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MeshLoader.cpp" />
     <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="NPC.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="JVShader.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="NPC.h" />

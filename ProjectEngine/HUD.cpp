@@ -21,9 +21,9 @@ void HUD::HUDEvent(IEvent event)
 	Igui->handleEvent(event);
 }
 
-bool HUD::GetCallbackEvent(tgui::Callback callback)
+tgui::Widget::Ptr HUD::GetWidget(std::string wName, bool recursive) const
 {
-	return Igui->pollCallback(callback);
+	return Igui->get(wName, recursive);
 }
 
 void HUD::SetFont(std::string fontPath)
@@ -37,49 +37,55 @@ void HUD::Draw()
 }
 
 
-void HUD::CreateHUDBox(tgui::Gui& gui, std::string image, glm::vec2 size, glm::vec2 position)	
+tgui::Picture::Ptr HUD::CreateHUDBox(tgui::Gui& gui, std::string wName ,std::string image, 
+	glm::vec2 size, glm::vec2 position, unsigned id)	
 {
-	tgui::Picture::Ptr background(*Igui);
+	tgui::Picture::Ptr background(*Igui, wName);
 	background->load(image);
 	background->setSize(size.r, size.g);
 	background->setPosition(position.r, position.g);
+	background->setCallbackId(id);
+
+	return background;
 }
 
-void HUD::CreateLabel(tgui::Gui& gui, std::string text, glm::vec2 position)
+tgui::Label::Ptr HUD::CreateLabel(tgui::Gui& gui, std::string wName, std::string text, glm::vec2 position, unsigned id)
 {
-	tgui::Label::Ptr label(*Igui);
+	tgui::Label::Ptr label(*Igui, wName);
 	label->setText(text);
 	label->setPosition(position.r, position.g);
+	label->setCallbackId(id);
+
+	return label;
 }
 
-void HUD::CreateInputBox(tgui::Gui& gui,std::string wName, std::string wConfig, 
-	glm::vec2 size, glm::vec2 position)
+tgui::EditBox::Ptr HUD::CreateInputBox(tgui::Gui& gui, std::string wName, std::string wConfig,
+	glm::vec2 size, glm::vec2 position, unsigned id)
 {
 	tgui::EditBox::Ptr textbox(*Igui, wName);
 	textbox->load(wConfig);
 	textbox->setSize(size.r, size.g);
 	textbox->setPosition(position.r, position.g);
+	textbox->setCallbackId(id);
+
+	return textbox;
 }
 
-void HUD::CreateButton(tgui::Gui& gui, std::string wConfig, glm::vec2 size, glm::vec2 position,
-	std::string text)
+tgui::Button::Ptr HUD::CreateButton(tgui::Gui& gui, std::string wName, std::string wConfig, glm::vec2 size, glm::vec2 position,
+	std::string text, unsigned id)
 {
-	tgui::Button::Ptr button(*Igui, "Button");
+	tgui::Button::Ptr button(*Igui, wName);
 	button->load(wConfig);
 	button->setSize(size.r, size.g);
 	button->setPosition(position.r, position.g);
 	button->setText(text);
 	button->bindCallback(tgui::Button::LeftMouseClicked);
-	button->setCallbackId(1);
+	button->setCallbackId(id);
+
+	return button;
 
 }
 
-void HUD::setLabelText(std::string text)
-{
-	tgui::EditBox::Ptr foo = Igui->get("TextBox");
-	std::cout << "BLAH!" << std::endl;
-	foo->setText(text);
-}
 
 HUD::~HUD()
 {

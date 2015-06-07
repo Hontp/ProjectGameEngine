@@ -22,15 +22,12 @@ public:
 	void SetFont(std::string fontPath);
 	
 	void HUDEvent(IEvent events);
+	tgui::Widget::Ptr GetWidget(std::string wName, bool recursive = false) const;
 	
-	bool GetCallbackEvent(tgui::Callback callback);
-
 	void Draw();
 
-	void CreateHUDBox(tgui::Gui& gui, std::string image, glm::vec2 size, glm::vec2 position);
-	void CreateLabel(tgui::Gui& gui, std::string text, glm::vec2 position);
-	void CreateInputBox(tgui::Gui& gui, std::string wName, std::string wConfig, glm::vec2 size, glm::vec2 position);
-	void CreateButton(tgui::Gui& gui, std::string wConfig, glm::vec2 size, glm::vec2 position, std::string text);
-
-	void setLabelText(std::string text);
+	tgui::Picture::Ptr CreateHUDBox(tgui::Gui& gui, std::string wName, std::string image, glm::vec2 size, glm::vec2 position, unsigned id);
+	tgui::Label::Ptr CreateLabel(tgui::Gui& gui, std::string wName, std::string text, glm::vec2 position, unsigned id);
+	tgui::EditBox::Ptr CreateInputBox(tgui::Gui& gui, std::string wName, std::string wConfig, glm::vec2 size, glm::vec2 position, unsigned id);
+	tgui::Button::Ptr CreateButton(tgui::Gui& gui, std::string wName, std::string wConfig, glm::vec2 size, glm::vec2 position, std::string text, unsigned id);
 };
